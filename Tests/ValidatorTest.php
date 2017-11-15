@@ -66,7 +66,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
         $expected = [
             'field3' => [
-                'Value required.'
+                Required::MESSAGE
             ]
         ];
 

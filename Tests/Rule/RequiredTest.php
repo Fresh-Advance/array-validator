@@ -35,6 +35,7 @@ class RequiredTest extends TestCase
      * @dataProvider processFailedDataProvider
      *
      * @expectedException \Sieg\ArrayValidator\Exception\RuleFailed
+     * @expectedExceptionMessage \Sieg\ArrayValidator\Rule\Required::MESSAGE
      */
     public function testProcessFailed($key)
     {

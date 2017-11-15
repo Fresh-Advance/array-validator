@@ -6,6 +6,8 @@ use Sieg\ArrayValidator\Exception\RuleFailed;
 
 abstract class AbstractRule
 {
+    const MESSAGE = 'VALIDATOR_RULE_MESSAGE';
+
     protected $config = [
         'message' => '',
         'fields' => []
