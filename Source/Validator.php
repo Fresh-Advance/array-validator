@@ -58,6 +58,6 @@ class Validator
      */
     public function getErrors()
     {
-       return $this->errors;
+        return $this->errors;
     }
 }
