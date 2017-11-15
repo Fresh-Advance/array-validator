@@ -51,4 +51,17 @@ class RequiredTest extends TestCase
             ['field5']
         ];
     }
+
+    /**
+     * @expectedException \Sieg\ArrayValidator\Exception\RuleFailed
+     * @expectedExceptionMessage Custom message
+     */
+    public function testMessageConfig()
+    {
+        $config = [
+            'message' => 'Custom message'
+        ];
+        $rule = new Required($config);
+        $rule->process('field2', $this->exampleData);
+    }
 }
