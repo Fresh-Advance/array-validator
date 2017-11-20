@@ -2,6 +2,7 @@
 
 namespace Sieg\ArrayValidator\Tests;
 
+use Sieg\ArrayValidator\Rule\Expression;
 use Sieg\ArrayValidator\Rule\Required;
 use Sieg\ArrayValidator\Validator;
 
@@ -11,23 +12,17 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         Required::class => [
             'fields' => ['field1', 'field2', 'field3']
         ],
-//        Length::class => [
-//            [
-//                'fields' => ['field2', 'field3'],
-//                'message' => 'Field length should be more than 3',
-//                'moreThan' => 3
-//            ],
-//            [
-//                'fields' => ['field2', 'field3'],
-//                'message' => 'Field length should be less than 3',
-//                'lessThan' => 10
-//            ],
-//        ],
-//        Equals::class => [
-//            'fields' => ['password'],
-//            'message' => 'Some message',
-//            'equalToField' => 'password2'
-//        ]
+        Expression::class => [
+            [
+                'fields' => ['field1', 'field3'],
+                'pattern' => '/value\d+/'
+            ],
+            [
+                'fields' => ['field2'],
+                'pattern' => '/Value/i',
+                'message' => 'super message'
+            ]
+        ]
     ];
 
     public function testConstructor()
@@ -54,19 +49,23 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         $this->assertEmpty($validator->getErrors());
     }
 
-    public function testOneError()
+    public function testErrors()
     {
         $data = [
             'field1' => 'value1',
-            'field2' => 'value2'
+            'field2' => 'something'
         ];
 
         $validator = new Validator($this->configurationExample);
         $validator->validate($data);
 
         $expected = [
+            'field2' => [
+                'super message'
+            ],
             'field3' => [
-                Required::MESSAGE
+                Required::MESSAGE,
+                Expression::MESSAGE
             ]
         ];
 

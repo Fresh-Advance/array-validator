@@ -13,6 +13,9 @@ class Validator
     /** @var array $errors */
     protected $errors = [];
 
+    /** @var bool $validationStatus */
+    protected $validationStatus = true;
+
     /**
      * Validator constructor.
      *
@@ -32,23 +35,49 @@ class Validator
      */
     public function validate($data)
     {
-        $validationResult = true;
         $this->errors = [];
+        $this->validationStatus = true;
 
         foreach ($this->rules as $ruleClass => $ruleConfiguration) {
-            foreach ($ruleConfiguration['fields'] as $fieldName) {
-                try {
-                    /** @var AbstractRule $rule */
-                    $rule = new $ruleClass($ruleConfiguration);
-                    $rule->process($fieldName, $data);
-                } catch (RuleFailed $exception) {
-                    $this->errors[$fieldName][] = $exception->getMessage();
-                    $validationResult = false;
-                }
-            }
+            $this->processRule($data, $ruleConfiguration, $ruleClass);
         }
 
-        return $validationResult;
+        return $this->validationStatus;
+    }
+
+    /**
+     * @param $data
+     * @param $ruleConfiguration
+     * @param $ruleClass
+     */
+    protected function processRule($data, $ruleConfiguration, $ruleClass)
+    {
+        if (array_key_exists('fields', $ruleConfiguration)) {
+            $this->processRuleConfiguration($data, $ruleConfiguration, $ruleClass);
+        } else {
+            foreach ($ruleConfiguration as $ruleSubConfiguration) {
+                $this->processRuleConfiguration($data, $ruleSubConfiguration, $ruleClass);
+            }
+        }
+    }
+
+    /**
+     * @param $data
+     * @param $ruleConfiguration
+     * @param $ruleClass
+     */
+    protected function processRuleConfiguration($data, $ruleConfiguration, $ruleClass)
+    {
+        foreach ($ruleConfiguration['fields'] as $fieldName) {
+            try {
+                /** @var AbstractRule $rule */
+                $rule = new $ruleClass($ruleConfiguration);
+                $rule->process($fieldName, $data);
+            } catch (RuleFailed $exception) {
+                $this->errors[$fieldName][] = $exception->getMessage();
+                $this->validationStatus = false;
+            }
+        }
     }
 
     /**
