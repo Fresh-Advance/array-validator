@@ -33,7 +33,7 @@ class Validator
      *
      * @return bool
      */
-    public function validate($data)
+    public function isValid($data)
     {
         $this->errors = [];
         $this->validationStatus = true;

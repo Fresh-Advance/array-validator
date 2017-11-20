@@ -40,7 +40,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         ];
 
         $validator = new Validator($this->configurationExample);
-        $this->assertTrue($validator->validate($data));
+        $this->assertTrue($validator->isValid($data));
     }
 
     public function testEmptyGetErrors()
@@ -57,7 +57,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         ];
 
         $validator = new Validator($this->configurationExample);
-        $validator->validate($data);
+        $validator->isValid($data);
 
         $expected = [
             'field2' => [
