@@ -63,3 +63,17 @@ Rule checks the value to match specific regular expression pattern.
 Parameters:
 * **fields** - String[]
 * **pattern** - String
+
+### Equals Rule
+
+Rule checks the value to match specific regular expression pattern.
+
+Parameters:
+* **fields** - String[]
+* **key** - String
+    
+    If option is set, the rule will check if field value matches another field value
+    
+* **value** - String
+
+    If option is set, the rule will check if field value matches the option value
