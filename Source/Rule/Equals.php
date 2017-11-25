@@ -31,7 +31,9 @@ class Equals extends AbstractRule
      */
     protected function checkKeyOption($key, $data, $message)
     {
-        if (isset($this->config['key']) && (!isset($data[$this->config['key']]) || $data[$key] !== $data[$this->config['key']])) {
+        if (isset($this->config['key']) &&
+            (!isset($data[$this->config['key']]) || $data[$key] !== $data[$this->config['key']])
+        ) {
             throw new RuleFailed($message);
         }
     }
