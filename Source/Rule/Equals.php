@@ -12,10 +12,6 @@ class Equals extends AbstractRule
     {
         $message = $this->config['message'] ?: self::MESSAGE;
 
-        if (!isset($data[$key])) {
-            throw new RuleFailed($message);
-        }
-
         $this->checkKeyOption($key, $data, $message);
         $this->checkValueOption($key, $data, $message);
 
