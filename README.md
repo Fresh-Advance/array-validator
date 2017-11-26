@@ -40,36 +40,34 @@
      }
 ```
 
-## Create and use custom Rules
-
-* Custom rule should extend ``\Sieg\ArrayValidator\Rule\AbstractRule``
-* Use it as regular rules whose comes with the component.
-
 ## Predefined Rules
 
 There are some basic rules implemented with the component.
 
+Every rule options:
+
+* **fields** - String[]
+
+    List of keys in array to apply rule on
+
 ### Required Rule
 
 Rule checks if key exists in array and is not null.
-
-Parameters:
-* **fields** - String[]
 
 ### Expression Rule
 
 Rule checks the value to match specific regular expression pattern.
 
 Parameters:
-* **fields** - String[]
 * **pattern** - String
+    
+    Regular expression pattern to check fields against
 
 ### Equals Rule
 
 Rule checks the value to match specific regular expression pattern.
 
 Parameters:
-* **fields** - String[]
 * **key** - String
     
     If option is set, the rule will check if field value matches another field value
@@ -77,3 +75,8 @@ Parameters:
 * **value** - String
 
     If option is set, the rule will check if field value matches the option value
+
+## Create and use custom Rules
+
+* Custom rule should extend ``\Sieg\ArrayValidator\Rule\AbstractRule``
+* Use it as regular rules whose comes with the component.
