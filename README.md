@@ -80,3 +80,4 @@ Parameters:
 
 * Custom rule should extend ``\Sieg\ArrayValidator\Rule\AbstractRule``
 * Use it as regular rules whose comes with the component.
+* Validator catches ``\Sieg\ArrayValidator\Exception\RuleFailed`` type Exceptions for setting field error messages.
