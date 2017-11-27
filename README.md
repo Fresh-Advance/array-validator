@@ -89,6 +89,23 @@ Parameters:
     
     Regular expression pattern to check fields against
 
+### Length Rule
+
+Rule checks a length of the value.
+
+Parameters:
+* **min** - Integer
+    
+    If option is set, the rule will check if value length is at least **min** symbols.
+    
+* **max** - Integer
+    
+    If option is set, the rule will check if value length is maximum **max** symbols.
+
+* **actual** - Integer
+    
+    If option is set, the rule will check if value length is **actual** symbols.
+
 ## Create and use custom Rules
 
 * Custom rule should extend ``\Sieg\ArrayValidator\Rule\AbstractRule``
