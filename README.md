@@ -48,7 +48,11 @@ Every rule options:
 
 * **fields** - String[]
 
-    List of keys in array to apply rule on
+    List of keys in array to apply rule on.
+    
+* **message** - String
+
+    Error message for failing validation field.
 
 ### Required Rule
 
@@ -75,6 +79,15 @@ Parameters:
 * **value** - String
 
     If option is set, the rule will check if field value matches the option value
+
+### Callback Rule
+
+Runs some closure and throws a message if closure fails.
+
+Parameters:
+* **callback** - Closure with parameters: $key, $data.
+    
+    Regular expression pattern to check fields against
 
 ## Create and use custom Rules
 
