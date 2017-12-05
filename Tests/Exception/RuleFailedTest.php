@@ -6,9 +6,11 @@ use Sieg\ArrayValidator\Exception\RuleFailed;
 
 class RuleFailedTest extends \PHPUnit_Framework_TestCase
 {
-    public function testConstructor()
+    /**
+     * @expectedException \Sieg\ArrayValidator\Exception\RuleFailed
+     */
+    public function testThrowable()
     {
-        $exception = new RuleFailed();
-        $this->assertInstanceOf(\Exception::class, $exception);
+        throw new RuleFailed();
     }
 }
