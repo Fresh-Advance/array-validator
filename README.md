@@ -106,6 +106,30 @@ Parameters:
     
     If option is set, the rule will check if value length is **actual** symbols.
 
+### Filter Rule
+
+Rule uses filter_var method for validating the value.
+
+Refer to filter_var method documentation for more information: http://php.net/manual/en/function.filter-var.php
+
+Parameters:
+* **rule** - one of PHP filter constants to apply
+    
+    Supported rules:
+        
+        * FILTER_VALIDATE_EMAIL
+        * FILTER_VALIDATE_FLOAT
+        * FILTER_VALIDATE_INT
+        * FILTER_VALIDATE_IP
+        * FILTER_VALIDATE_MAC
+        * FILTER_VALIDATE_REGEXP
+        * FILTER_VALIDATE_URL
+
+* **options** - Array
+    
+    Sent to filter_var method as "options" argument.
+
+
 ## Create and use custom Rules
 
 * Custom rule should extend ``\Sieg\ArrayValidator\Rule\AbstractRule``
