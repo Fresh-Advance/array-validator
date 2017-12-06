@@ -11,8 +11,9 @@ class Filter extends AbstractRule
     public function process($key, $data)
     {
         $message = $this->config['message'] ?: self::MESSAGE;
+        $options = isset($this->config['options']) ? $this->config['options'] : null;
 
-        if (!isset($data[$key]) || false === filter_var($data[$key], $this->config['rule'], $this->config['options'])) {
+        if (!isset($data[$key]) || false === filter_var($data[$key], $this->config['rule'], $options)) {
             throw new RuleFailed($message);
         }
 
