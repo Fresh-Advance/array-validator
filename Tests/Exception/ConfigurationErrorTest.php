@@ -2,9 +2,10 @@
 
 namespace Sieg\ArrayValidator\Tests\Rule;
 
+use PHPUnit\Framework\TestCase;
 use Sieg\ArrayValidator\Exception\ConfigurationError;
 
-class ConfigurationErrorTest extends \PHPUnit_Framework_TestCase
+class ConfigurationErrorTest extends TestCase
 {
     /**
      * @expectedException \Sieg\ArrayValidator\Exception\ConfigurationError

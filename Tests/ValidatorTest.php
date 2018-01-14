@@ -2,11 +2,12 @@
 
 namespace Sieg\ArrayValidator\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Sieg\ArrayValidator\Rule\Expression;
 use Sieg\ArrayValidator\Rule\Required;
 use Sieg\ArrayValidator\Validator;
 
-class ValidatorTest extends \PHPUnit_Framework_TestCase
+class ValidatorTest extends TestCase
 {
     public $configurationExample = [
         Required::class => [
