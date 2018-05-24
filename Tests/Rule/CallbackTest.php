@@ -21,7 +21,7 @@ class CallbackTest extends TestCase
     public function testProcessRemoteClassMethod()
     {
         $config = [
-            'callback' => '\Sieg\ArrayValidator\Tests\Rule\CallbackTest::exampleCallback'
+            'callback' => [$this, "exampleCallback"]
         ];
         $rule = new Callback($config);
         $this->assertTrue($rule->process('field1', []));
