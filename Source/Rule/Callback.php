@@ -11,8 +11,9 @@ class Callback extends AbstractRule
     public function process($key, $data)
     {
         $message = $this->config['message'] ?: self::MESSAGE;
+        $function = $this->config['callback'];
 
-        if (!$this->config['callback']($key, $data)) {
+        if (!$function($key, $data)) {
             throw new RuleFailed($message);
         }
 
