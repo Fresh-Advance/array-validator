@@ -89,4 +89,46 @@ class Validator
     {
         return $this->errors;
     }
+
+    /**
+     * Get configuration of specific rule
+     *
+     * @param string $key
+     *
+     * @return array
+     */
+    public function getRule($key)
+    {
+        $result = isset($this->rules[$key]) ? $this->rules[$key] : [];
+
+        return $result;
+    }
+
+    /**
+     * Set configuration of specific rule
+     *
+     * @param string $key
+     * @param array $configuration
+     */
+    public function setRule($key, $configuration)
+    {
+        $this->rules[$key] = $configuration;
+    }
+
+    /**
+     * Appends additional configuration to specific rule
+     *
+     * @param string $key
+     * @param array $configuration
+     */
+    public function addRule($key, $configuration)
+    {
+        $currentValue = $this->getRule($key);
+        if (array_key_exists('fields', $currentValue)) {
+            $currentValue = [$currentValue];
+        }
+        $currentValue[] = $configuration;
+
+        $this->setRule($key, $currentValue);
+    }
 }

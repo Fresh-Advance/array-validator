@@ -6,7 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-...
+* Validator got some power to manipulate rules directly, but not just through initialization configuration.
+
+New methods:
+* getRule - get configurations of specific rule
+* setRule - set configuration of specific rule
+* addRule - append additional configuration to specific rule
 
 ## [v1.0.0] - 2018-05-24
 
