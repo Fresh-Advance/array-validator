@@ -3,6 +3,7 @@
 namespace Sieg\ArrayValidator\Tests\Rule;
 
 use PHPUnit\Framework\TestCase;
+use Sieg\ArrayValidator\Exception\RuleFailed;
 use Sieg\ArrayValidator\Rule\Length;
 
 class LengthTest extends TestCase
@@ -34,12 +35,11 @@ class LengthTest extends TestCase
 
     /**
      * @dataProvider processFailedDataProvider
-     *
-     * @expectedException \Sieg\ArrayValidator\Exception\RuleFailed
-     * @expectedExceptionMessage \Sieg\ArrayValidator\Rule\Length::MESSAGE
      */
     public function testProcessFailed($string, $config)
     {
+        $this->expectExceptionMessage(Length::MESSAGE);
+        $this->expectException(RuleFailed::class);
         $rule = new Length($config);
         $rule->process($string, $this->exampleData);
     }

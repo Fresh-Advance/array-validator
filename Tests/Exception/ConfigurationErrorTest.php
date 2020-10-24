@@ -7,11 +7,9 @@ use Sieg\ArrayValidator\Exception\ConfigurationError;
 
 class ConfigurationErrorTest extends TestCase
 {
-    /**
-     * @expectedException \Sieg\ArrayValidator\Exception\ConfigurationError
-     */
     public function testThrowable()
     {
+        $this->expectException(ConfigurationError::class);
         throw new ConfigurationError();
     }
 }

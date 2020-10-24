@@ -33,12 +33,11 @@ class CallbackTest extends TestCase
         return true;
     }
 
-    /**
-     * @expectedException \Sieg\ArrayValidator\Exception\RuleFailed
-     * @expectedExceptionMessage \Sieg\ArrayValidator\Rule\Callback::MESSAGE
-     */
     public function testProcessFailed()
     {
+        $this->expectExceptionMessage(\Sieg\ArrayValidator\Rule\Callback::MESSAGE);
+        $this->expectException(\Sieg\ArrayValidator\Exception\RuleFailed::class);
+
         $config = [
             'callback' => function($key, $data) {
                 return false;

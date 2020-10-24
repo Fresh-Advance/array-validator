@@ -3,6 +3,7 @@
 namespace Sieg\ArrayValidator\Tests\Rule;
 
 use PHPUnit\Framework\TestCase;
+use Sieg\ArrayValidator\Exception\RuleFailed;
 use Sieg\ArrayValidator\Rule\Required;
 
 class RequiredTest extends TestCase
@@ -33,12 +34,12 @@ class RequiredTest extends TestCase
 
     /**
      * @dataProvider processFailedDataProvider
-     *
-     * @expectedException \Sieg\ArrayValidator\Exception\RuleFailed
-     * @expectedExceptionMessage \Sieg\ArrayValidator\Rule\Required::MESSAGE
      */
     public function testProcessFailed($key)
     {
+        $this->expectExceptionMessage(Required::MESSAGE);
+        $this->expectException(RuleFailed::class);
+
         $rule = new Required();
         $rule->process($key, $this->exampleData);
     }
@@ -52,12 +53,11 @@ class RequiredTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException \Sieg\ArrayValidator\Exception\RuleFailed
-     * @expectedExceptionMessage Custom message
-     */
     public function testMessageConfig()
     {
+        $this->expectExceptionMessage("Custom message");
+        $this->expectException(RuleFailed::class);
+
         $config = [
             'message' => 'Custom message'
         ];

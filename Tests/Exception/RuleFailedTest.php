@@ -7,11 +7,9 @@ use Sieg\ArrayValidator\Exception\RuleFailed;
 
 class RuleFailedTest extends TestCase
 {
-    /**
-     * @expectedException \Sieg\ArrayValidator\Exception\RuleFailed
-     */
     public function testThrowable()
     {
+        $this->expectException(RuleFailed::class);
         throw new RuleFailed();
     }
 }

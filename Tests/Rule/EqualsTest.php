@@ -3,6 +3,7 @@
 namespace Sieg\ArrayValidator\Tests\Rule;
 
 use PHPUnit\Framework\TestCase;
+use Sieg\ArrayValidator\Exception\RuleFailed;
 use Sieg\ArrayValidator\Rule\Equals;
 
 class EqualsTest extends TestCase
@@ -32,12 +33,10 @@ class EqualsTest extends TestCase
         $this->assertTrue($rule->process('field3', $this->exampleData));
     }
 
-    /**
-     * @expectedException \Sieg\ArrayValidator\Exception\RuleFailed
-     * @expectedExceptionMessage \Sieg\ArrayValidator\Rule\Equals::MESSAGE
-     */
     public function testProcessValueFailed()
     {
+        $this->expectExceptionMessage(Equals::MESSAGE);
+        $this->expectException(RuleFailed::class);
         $config = [
             'value' => 'fieldvalue2'
         ];
@@ -45,12 +44,10 @@ class EqualsTest extends TestCase
         $this->assertTrue($rule->process('field1', $this->exampleData));
     }
 
-    /**
-     * @expectedException \Sieg\ArrayValidator\Exception\RuleFailed
-     * @expectedExceptionMessage \Sieg\ArrayValidator\Rule\Equals::MESSAGE
-     */
     public function testProcessKeyFailed()
     {
+        $this->expectExceptionMessage(Equals::MESSAGE);
+        $this->expectException(RuleFailed::class);
         $config = [
             'key' => 'field2'
         ];

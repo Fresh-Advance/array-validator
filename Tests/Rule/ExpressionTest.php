@@ -3,6 +3,7 @@
 namespace Sieg\ArrayValidator\Tests\Rule;
 
 use PHPUnit\Framework\TestCase;
+use Sieg\ArrayValidator\Exception\RuleFailed;
 use Sieg\ArrayValidator\Rule\Expression;
 
 class ExpressionTest extends TestCase
@@ -21,12 +22,10 @@ class ExpressionTest extends TestCase
         $this->assertTrue($rule->process('field1', $this->exampleData));
     }
 
-    /**
-     * @expectedException \Sieg\ArrayValidator\Exception\RuleFailed
-     * @expectedExceptionMessage \Sieg\ArrayValidator\Rule\Expression::MESSAGE
-     */
     public function testProcessFailed()
     {
+        $this->expectExceptionMessage(Expression::MESSAGE);
+        $this->expectException(RuleFailed::class);
         $config = [
             'pattern' => '/something/i'
         ];
@@ -34,12 +33,10 @@ class ExpressionTest extends TestCase
         $rule->process('field2', $this->exampleData);
     }
 
-    /**
-     * @expectedException \Sieg\ArrayValidator\Exception\RuleFailed
-     * @expectedExceptionMessage Custom message
-     */
     public function testMessageConfig()
     {
+        $this->expectExceptionMessage("Custom message");
+        $this->expectException(RuleFailed::class);
         $config = [
             'pattern' => '/something/i',
             'message' => 'Custom message'

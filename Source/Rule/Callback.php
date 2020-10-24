@@ -6,7 +6,7 @@ use Sieg\ArrayValidator\Exception\RuleFailed;
 
 class Callback extends AbstractRule
 {
-    const MESSAGE = 'VALIDATOR_RULE_CALLBACK_FAILED';
+    public const MESSAGE = 'VALIDATOR_RULE_CALLBACK_FAILED';
 
     public function process($key, $data)
     {

@@ -6,7 +6,7 @@ use Sieg\ArrayValidator\Exception\RuleFailed;
 
 class Required extends AbstractRule
 {
-    const MESSAGE = 'VALIDATOR_RULE_REQUIRED_FIELD_VALUE';
+    public const MESSAGE = 'VALIDATOR_RULE_REQUIRED_FIELD_VALUE';
 
     public function process($key, $data)
     {
