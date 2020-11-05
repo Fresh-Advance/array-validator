@@ -4,17 +4,22 @@
 [![Coverage Status](https://coveralls.io/repos/github/Sieg/array-validator/badge.svg?branch=master)](https://coveralls.io/github/Sieg/array-validator?branch=master)
 [![Packagist](https://img.shields.io/packagist/v/sieg/array-validator.svg)](https://packagist.org/packages/sieg/array-validator)
 
+Simple form data / any array validation tool.
+
 * Component validates an array by provided rules list. 
-* Its possible to use multiple configurations of one rule for one validation.
+* Its possible to use multiple configurations of one rule for one field in one validation run.
 
 ## Usage example
 
 ```php
+    use Sieg\ArrayValidator\Rule;
+    use Sieg\ArrayValidator\Validator;
+
     $configurationExample = [
-        \Sieg\ArrayValidator\Rule\Required::class => [
+        Rule\Required::class => [
             'fields' => ['field1', 'field2', 'field3']
         ],
-        \Sieg\ArrayValidator\Rule\Expression::class => [
+        Rule\Expression::class => [
             [
                 'fields' => ['field1', 'field3'],
                 'pattern' => '/value\d+/'
@@ -32,8 +37,8 @@
          'field2' => 'something'
      ];
      
-     $validator = new \Sieg\ArrayValidator\Validator($configurationExample);
-     if ($validator->isValid($data)) {
+     $validator = new Validator($configurationExample);
+     if ($validator->isValid($dataExample)) {
         // array fits validation configuration
      } else {
         print_r($validator->getErrors());
