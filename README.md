@@ -9,11 +9,19 @@ Simple form data / any array validation tool.
 * Component validates an array by provided rules list. 
 * Its possible to use multiple configurations of one rule for one field in one validation run.
 
+## Installation
+
+Installation via composer:
+
+```
+composer require fresh-advance/array-validator
+```
+
 ## Usage example
 
 ```php
-    use Sieg\ArrayValidator\Rule;
-    use Sieg\ArrayValidator\Validator;
+    use \Sieg\ArrayValidator\Rule;
+    use \Sieg\ArrayValidator\Validator;
 
     $configurationExample = [
         Rule\Required::class => [
