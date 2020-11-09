@@ -12,9 +12,9 @@ before_script:
   - mkdir -p build/logs
 
 script:
+  - vendor/bin/phpunit --coverage-clover="build/logs/clover.xml" Tests
+  - vendor/bin/phpcs --standard=PSR2 Source
   - sonar-scanner
-#  - vendor/bin/phpunit --coverage-clover="build/logs/clover.xml" Tests
-#  - vendor/bin/phpcs --standard=PSR2 Source
 
 after_success:
   - php vendor/bin/coveralls -v
