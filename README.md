@@ -1,7 +1,9 @@
 # Array Validator
 
 [![Build Status](https://travis-ci.com/Fresh-Advance/array-validator.svg?branch=master)](https://travis-ci.com/Fresh-Advance/array-validator)
-[![Coverage Status](https://coveralls.io/repos/github/Sieg/array-validator/badge.svg?branch=master)](https://coveralls.io/github/Sieg/array-validator?branch=master)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Fresh-Advance_array-validator&metric=alert_status)](https://sonarcloud.io/dashboard?id=Fresh-Advance_array-validator)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Fresh-Advance_array-validator&metric=coverage)](https://sonarcloud.io/dashboard?id=Fresh-Advance_array-validator)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=Fresh-Advance_array-validator&metric=sqale_index)](https://sonarcloud.io/dashboard?id=Fresh-Advance_array-validator)
 [![Packagist](https://img.shields.io/packagist/v/fresh-advance/array-validator.svg)](https://packagist.org/packages/fresh-advance/array-validator)
 
 Simple form data / any array validation tool.
