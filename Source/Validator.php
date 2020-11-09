@@ -99,9 +99,7 @@ class Validator
      */
     public function getRule($key)
     {
-        $result = isset($this->rules[$key]) ? $this->rules[$key] : [];
-
-        return $result;
+        return isset($this->rules[$key]) ? $this->rules[$key] : [];
     }
 
     /**

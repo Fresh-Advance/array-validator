@@ -12,7 +12,7 @@ class Required extends AbstractRule
     {
         $message = $this->config['message'] ?: self::MESSAGE;
 
-        if (!isset($data[$key]) or $data[$key] === null or $data[$key] === "") {
+        if (!isset($data[$key]) || $data[$key] === null || $data[$key] === "") {
             throw new RuleFailed($message);
         }
 
