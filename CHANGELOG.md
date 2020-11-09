@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
     * Validator::setRule - set configuration of specific rule
     * Validator::addRule - append additional configuration to specific rule
 
+### Changed
+
+- Vendor renamed to fresh-advance
+- Improved readme with installation instructions
+
 ## [v1.0.0] - 2018-05-24
 
 Tested for a while, stable version.
