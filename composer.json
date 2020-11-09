@@ -1,7 +1,8 @@
 {
-    "name": "sieg/array-validator",
+    "name": "fresh-advance/array-validator",
     "type": "library",
     "license": "MIT",
+    "description": "The component validates form data or any given array by provided rule list.",
     "authors": [
         {
             "name": "Anton Fedurtsya",
@@ -9,6 +10,7 @@
         }
     ],
     "require": {
+        "php": ">=7.3"
     },
     "require-dev": {
         "phpunit/phpunit": "*",
@@ -19,5 +21,13 @@
     },
     "autoload-dev": {
         "psr-4": { "Sieg\\ArrayValidator\\Tests\\": "Tests/" }
+    },
+    "scripts": {
+        "style": "phpcs Source --standard=PSR12",
+        "test": "phpunit Tests",
+        "check": [
+            "@style",
+            "@test"
+        ]
     }
 }
