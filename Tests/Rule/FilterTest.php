@@ -4,7 +4,7 @@ namespace Sieg\ArrayValidator\Tests\Rule;
 
 use PHPUnit\Framework\TestCase;
 use Sieg\ArrayValidator\Exception\RuleFailed;
-use Sieg\ArrayValidator\Rule\Filter;
+use Sieg\ArrayValidator\Rule;
 
 class FilterTest extends TestCase
 {
@@ -35,7 +35,7 @@ class FilterTest extends TestCase
             'rule' => $rule,
             'options' => $options
         ];
-        $rule = new Filter($config);
+        $rule = new Rule\Filter($config);
         $this->assertTrue($rule->process($field, $this->exampleData));
     }
 
@@ -76,13 +76,13 @@ class FilterTest extends TestCase
      */
     public function testProcessFailure($field, $rule, $options)
     {
-        $this->expectExceptionMessage(Filter::MESSAGE);
+        $this->expectExceptionMessage(Rule\Filter::MESSAGE);
         $this->expectException(RuleFailed::class);
         $config = [
             'rule' => $rule,
             'options' => $options
         ];
-        $rule = new Filter($config);
+        $rule = new Rule\Filter($config);
         $rule->process($field, $this->exampleData);
     }
 

@@ -22,37 +22,56 @@ composer require fresh-advance/array-validator
 ## Usage example
 
 ```php
-    use \Sieg\ArrayValidator\Rule;
-    use \Sieg\ArrayValidator\Validator;
+use Sieg\ArrayValidator\Rule;
+use Sieg\ArrayValidator\Validator;
 
-    $configurationExample = [
-        Rule\Required::class => [
-            'fields' => ['field1', 'field2', 'field3']
+$configurationExample = [
+    Rule\Required::class => [
+        'fields' => ['field1', 'field2', 'field3']
+    ],
+    Rule\Expression::class => [
+        [
+            'fields' => ['field1', 'field3'],
+            'pattern' => '/value\d+/'
         ],
-        Rule\Expression::class => [
-            [
-                'fields' => ['field1', 'field3'],
-                'pattern' => '/value\d+/'
-            ],
-            [
-                'fields' => ['field2'],
-                'pattern' => '/Value/i',
-                'message' => 'super message'
-            ]
+        [
+            'fields' => ['field2'],
+            'pattern' => '/Value/i',
+            'message' => 'super message'
         ]
-    ];
-    
-    $dataExample = [
-         'field1' => 'value1',
-         'field2' => 'something'
-     ];
-     
-     $validator = new Validator($configurationExample);
-     if ($validator->isValid($dataExample)) {
-        // array fits validation configuration
-     } else {
-        print_r($validator->getErrors());
-     }
+    ]
+];
+
+$dataExample = [
+     'field1' => 'value1',
+     'field2' => 'something'
+ ];
+ 
+ $validator = new Validator($configurationExample);
+ if ($validator->isValid($dataExample)) {
+    // array fits validation configuration
+ } else {
+    print_r($validator->getErrors());
+ }
+```
+
+Gives validation errors with fields as keys:
+
+```
+Array
+(
+    [field3] => Array
+        (
+            [0] => VALIDATOR_RULE_REQUIRED_FIELD_VALUE
+            [1] => VALIDATOR_RULE_EXPRESSION_MATCH_FAILED
+        )
+
+    [field2] => Array
+        (
+            [0] => super message
+        )
+
+)
 ```
 
 ## Predefined Rules

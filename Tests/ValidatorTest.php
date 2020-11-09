@@ -3,17 +3,16 @@
 namespace Sieg\ArrayValidator\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Sieg\ArrayValidator\Rule\Expression;
-use Sieg\ArrayValidator\Rule\Required;
+use Sieg\ArrayValidator\Rule;
 use Sieg\ArrayValidator\Validator;
 
 class ValidatorTest extends TestCase
 {
     public $configurationExample = [
-        Required::class => [
+        Rule\Required::class => [
             'fields' => ['field1', 'field2', 'field3']
         ],
-        Expression::class => [
+        Rule\Expression::class => [
             [
                 'fields' => ['field1', 'field3'],
                 'pattern' => '/value\d+/'
@@ -65,8 +64,8 @@ class ValidatorTest extends TestCase
                 'super message'
             ],
             'field3' => [
-                Required::MESSAGE,
-                Expression::MESSAGE
+                Rule\Required::MESSAGE,
+                Rule\Expression::MESSAGE
             ]
         ];
 
@@ -76,35 +75,35 @@ class ValidatorTest extends TestCase
     public function testGetRule()
     {
         $validator = new Validator($this->configurationExample);
-        $this->assertSame($this->configurationExample[Required::class], $validator->getRule(Required::class));
-        $this->assertSame($this->configurationExample[Expression::class], $validator->getRule(Expression::class));
+        $this->assertSame($this->configurationExample[Rule\Required::class], $validator->getRule(Rule\Required::class));
+        $this->assertSame($this->configurationExample[Rule\Expression::class], $validator->getRule(Rule\Expression::class));
     }
 
     public function testSetRule()
     {
         $validator = new Validator($this->configurationExample);
-        $validator->setRule(Required::class, "exampleValue");
-        $this->assertSame("exampleValue", $validator->getRule(Required::class));
+        $validator->setRule(Rule\Required::class, "exampleValue");
+        $this->assertSame("exampleValue", $validator->getRule(Rule\Required::class));
     }
 
     public function testAddRuleToOne()
     {
         $validator = new Validator($this->configurationExample);
-        $validator->addRule(Required::class, "exampleValue");
-        $expected = [$this->configurationExample[Required::class]];
+        $validator->addRule(Rule\Required::class, "exampleValue");
+        $expected = [$this->configurationExample[Rule\Required::class]];
         $expected[] = "exampleValue";
 
-        $this->assertSame($expected, $validator->getRule(Required::class));
+        $this->assertSame($expected, $validator->getRule(Rule\Required::class));
     }
 
     public function testAddRuleToMultiple()
     {
         $validator = new Validator($this->configurationExample);
-        $validator->addRule(Expression::class, "exampleValue");
-        $expected = $this->configurationExample[Expression::class];
+        $validator->addRule(Rule\Expression::class, "exampleValue");
+        $expected = $this->configurationExample[Rule\Expression::class];
         $expected[] = "exampleValue";
 
-        $this->assertSame($expected, $validator->getRule(Expression::class));
+        $this->assertSame($expected, $validator->getRule(Rule\Expression::class));
     }
 
     public function testAddRuleToNotExisting()
