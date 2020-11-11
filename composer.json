@@ -31,6 +31,10 @@
             "@phpcs",
             "@phpstan",
             "@phpunit"
+        ],
+        "style": [
+            "@phpcs",
+            "@phpstan"
         ]
     }
 }

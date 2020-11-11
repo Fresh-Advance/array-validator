@@ -13,7 +13,7 @@ before_script:
 
 script:
   - vendor/bin/phpunit --coverage-clover="build/logs/clover.xml" Tests
-  - vendor/bin/phpcs --standard=PSR2 Source
+  - composer style
   - sonar-scanner
 
 after_success:
