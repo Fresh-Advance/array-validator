@@ -8,7 +8,7 @@ use Sieg\ArrayValidator\Rule;
 
 class FilterTest extends TestCase
 {
-    var $exampleData = [
+    protected $exampleData = [
         'field1' => 'some@email.com',
         'field2' => 1.2,
         'field3' => '1.2',
@@ -24,12 +24,8 @@ class FilterTest extends TestCase
 
     /**
      * @dataProvider successDataProvider
-     *
-     * @param $field
-     * @param $rule
-     * @param $options
      */
-    public function testProcessSuccess($field, $rule, $options)
+    public function testProcessSuccess(string $field, int $rule, array $options): void
     {
         $config = [
             'rule' => $rule,
@@ -69,12 +65,8 @@ class FilterTest extends TestCase
 
     /**
      * @dataProvider failureDataProvider
-     *
-     * @param $field
-     * @param $rule
-     * @param $options
      */
-    public function testProcessFailure($field, $rule, $options)
+    public function testProcessFailure(string $field, int $rule, array $options)
     {
         $this->expectExceptionMessage(Rule\Filter::MESSAGE);
         $this->expectException(RuleFailed::class);

@@ -11,7 +11,7 @@ class CallbackTest extends TestCase
     public function testProcessCallbackMethodSuccess()
     {
         $config = [
-            'callback' => function($key, $data) {
+            'callback' => function ($key, $data) {
                 return true;
             }
         ];
@@ -40,7 +40,7 @@ class CallbackTest extends TestCase
         $this->expectException(RuleFailed::class);
 
         $config = [
-            'callback' => function($key, $data) {
+            'callback' => function ($key, $data) {
                 return false;
             }
         ];

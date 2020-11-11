@@ -8,7 +8,7 @@ use Sieg\ArrayValidator\Rule;
 
 class ExpressionTest extends TestCase
 {
-    var $exampleData = [
+    protected $exampleData = [
         'field1' => 'some matching value',
         'field2' => 'bad field value'
     ];

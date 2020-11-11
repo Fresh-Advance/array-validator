@@ -8,7 +8,7 @@ use Sieg\ArrayValidator\Rule;
 
 class RequiredTest extends TestCase
 {
-    var $exampleData = [
+    protected $exampleData = [
         'field1' => 'with data',
         'field2' => '',
         'field3' => null,

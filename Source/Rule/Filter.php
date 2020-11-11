@@ -6,7 +6,7 @@ use Sieg\ArrayValidator\Exception\RuleFailed;
 
 class Filter extends AbstractRule
 {
-    const MESSAGE = 'VALIDATOR_RULE_FILTER_FAILED';
+    public const MESSAGE = 'VALIDATOR_RULE_FILTER_FAILED';
 
     public function process($key, $data)
     {

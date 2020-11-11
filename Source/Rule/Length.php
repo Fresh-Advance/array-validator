@@ -6,7 +6,7 @@ use Sieg\ArrayValidator\Exception\RuleFailed;
 
 class Length extends AbstractRule
 {
-    const MESSAGE = 'VALIDATOR_RULE_LENGTH_FAILED';
+    public const MESSAGE = 'VALIDATOR_RULE_LENGTH_FAILED';
 
     public function process($key, $data)
     {

@@ -6,7 +6,7 @@ use Sieg\ArrayValidator\Exception\RuleFailed;
 
 class Expression extends AbstractRule
 {
-    const MESSAGE = 'VALIDATOR_RULE_EXPRESSION_MATCH_FAILED';
+    public const MESSAGE = 'VALIDATOR_RULE_EXPRESSION_MATCH_FAILED';
 
     public function process($key, $data)
     {

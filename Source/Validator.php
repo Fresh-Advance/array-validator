@@ -45,12 +45,7 @@ class Validator
         return $this->validationStatus;
     }
 
-    /**
-     * @param $data
-     * @param $ruleConfiguration
-     * @param $ruleClass
-     */
-    protected function processRule($data, $ruleConfiguration, $ruleClass)
+    protected function processRule(array $data, array $ruleConfiguration, string $ruleClass)
     {
         if (array_key_exists('fields', $ruleConfiguration)) {
             $this->processRuleConfiguration($data, $ruleConfiguration, $ruleClass);
@@ -61,12 +56,7 @@ class Validator
         }
     }
 
-    /**
-     * @param $data
-     * @param $ruleConfiguration
-     * @param $ruleClass
-     */
-    protected function processRuleConfiguration($data, $ruleConfiguration, $ruleClass)
+    protected function processRuleConfiguration(array $data, array $ruleConfiguration, string $ruleClass)
     {
         foreach ($ruleConfiguration['fields'] as $fieldName) {
             try {

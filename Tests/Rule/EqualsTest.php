@@ -8,7 +8,7 @@ use Sieg\ArrayValidator\Rule;
 
 class EqualsTest extends TestCase
 {
-    var $exampleData = [
+    protected $exampleData = [
         'field1' => 'fieldvalue1',
         'field2' => 'fieldvalue2',
         'field3' => 'fieldvalue3',

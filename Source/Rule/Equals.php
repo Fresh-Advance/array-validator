@@ -6,7 +6,7 @@ use Sieg\ArrayValidator\Exception\RuleFailed;
 
 class Equals extends AbstractRule
 {
-    const MESSAGE = 'VALIDATOR_RULE_EQUALS_MATCH_FAILED';
+    public const MESSAGE = 'VALIDATOR_RULE_EQUALS_MATCH_FAILED';
 
     public function process($key, $data)
     {
@@ -27,7 +27,8 @@ class Equals extends AbstractRule
      */
     protected function checkKeyOption($key, $data, $message)
     {
-        if (isset($this->config['key']) &&
+        if (
+            isset($this->config['key']) &&
             (!isset($data[$this->config['key']]) || $data[$key] !== $data[$this->config['key']])
         ) {
             throw new RuleFailed($message);

@@ -75,43 +75,54 @@ class ValidatorTest extends TestCase
     public function testGetRule()
     {
         $validator = new Validator($this->configurationExample);
-        $this->assertSame($this->configurationExample[Rule\Required::class], $validator->getRule(Rule\Required::class));
-        $this->assertSame($this->configurationExample[Rule\Expression::class], $validator->getRule(Rule\Expression::class));
+
+        $this->assertSame(
+            $this->configurationExample[Rule\Required::class],
+            $validator->getRule(Rule\Required::class)
+        );
+
+        $this->assertSame(
+            $this->configurationExample[Rule\Expression::class],
+            $validator->getRule(Rule\Expression::class)
+        );
     }
 
     public function testSetRule()
     {
+        $ruleConfig = ['key' => "exampleValue"];
         $validator = new Validator($this->configurationExample);
-        $validator->setRule(Rule\Required::class, "exampleValue");
-        $this->assertSame("exampleValue", $validator->getRule(Rule\Required::class));
+        $validator->setRule(Rule\Required::class, $ruleConfig);
+        $this->assertSame($ruleConfig, $validator->getRule(Rule\Required::class));
     }
 
     public function testAddRuleToOne()
     {
+        $ruleConfig = ['key' => "exampleValue"];
         $validator = new Validator($this->configurationExample);
-        $validator->addRule(Rule\Required::class, "exampleValue");
+        $validator->addRule(Rule\Required::class, $ruleConfig);
         $expected = [$this->configurationExample[Rule\Required::class]];
-        $expected[] = "exampleValue";
+        $expected[] = $ruleConfig;
 
         $this->assertSame($expected, $validator->getRule(Rule\Required::class));
     }
 
     public function testAddRuleToMultiple()
     {
+        $ruleConfig = ['key' => "exampleValue"];
         $validator = new Validator($this->configurationExample);
-        $validator->addRule(Rule\Expression::class, "exampleValue");
+        $validator->addRule(Rule\Expression::class, $ruleConfig);
         $expected = $this->configurationExample[Rule\Expression::class];
-        $expected[] = "exampleValue";
+        $expected[] = $ruleConfig;
 
         $this->assertSame($expected, $validator->getRule(Rule\Expression::class));
     }
 
     public function testAddRuleToNotExisting()
     {
+        $ruleConfig = ['key' => "exampleValue"];
         $validator = new Validator($this->configurationExample);
-        $validator->addRule("other", "exampleValue");
-        $expected = ["exampleValue"];
+        $validator->addRule("other", $ruleConfig);
 
-        $this->assertSame($expected, $validator->getRule("other"));
+        $this->assertSame([$ruleConfig], $validator->getRule("other"));
     }
 }

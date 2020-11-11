@@ -24,11 +24,13 @@
         "psr-4": { "Sieg\\ArrayValidator\\Tests\\": "Tests/" }
     },
     "scripts": {
-        "style": "phpcs Source --standard=PSR12",
-        "test": "phpunit Tests",
+        "phpcs": "phpcs Source Tests --standard=PSR12",
+        "phpunit": "phpunit Tests",
+        "phpstan": "vendor/bin/phpstan analyse Source Tests --level 5",
         "check": [
-            "@style",
-            "@test"
+            "@phpcs",
+            "@phpstan",
+            "@phpunit"
         ]
     }
 }
