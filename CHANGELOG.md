@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Dynamic manipulation with Validator rules are possible now.
 - New methods:
     * Validator::getRule - get configurations of specific rule
     * Validator::setRule - set configuration of specific rule

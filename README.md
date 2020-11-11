@@ -74,6 +74,33 @@ Array
 )
 ```
 
+## Dynamic rule manipulation
+
+```php
+$validator = new Validator();
+
+// add another iteration for Required rule
+$validator->addRule(Rule\Required::class, [
+    'fields' => ['field1', 'field2', 'field3']
+]);
+
+// fully overwrite configs for Expression rule
+$validator->setRule(Rule\Expression::class, [
+    [
+        'fields' => ['field1', 'field3'],
+        'pattern' => '/value\d+/'
+    ],
+    [
+        'fields' => ['field2'],
+        'pattern' => '/Value/i',
+        'message' => 'super message'
+    ]
+]);
+
+// reset Expression rules
+$validator->setRule(Rule\Expression::class, []);
+```
+
 ## Predefined Rules
 
 There are some basic rules implemented with the component.
