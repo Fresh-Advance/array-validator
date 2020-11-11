@@ -8,6 +8,9 @@ use Sieg\ArrayValidator\Rule;
 
 class EqualsTest extends TestCase
 {
+    /**
+     * @var mixed[]
+     */
     protected $exampleData = [
         'field1' => 'fieldvalue1',
         'field2' => 'fieldvalue2',
@@ -15,7 +18,7 @@ class EqualsTest extends TestCase
         'field3x' => 'fieldvalue3'
     ];
 
-    public function testProcessValueSuccess()
+    public function testProcessValueSuccess(): void
     {
         $config = [
             'value' => 'fieldvalue1'
@@ -24,7 +27,7 @@ class EqualsTest extends TestCase
         $this->assertTrue($rule->process('field1', $this->exampleData));
     }
 
-    public function testProcessKeySuccess()
+    public function testProcessKeySuccess(): void
     {
         $config = [
             'key' => 'field3x'
@@ -33,7 +36,7 @@ class EqualsTest extends TestCase
         $this->assertTrue($rule->process('field3', $this->exampleData));
     }
 
-    public function testProcessValueFailed()
+    public function testProcessValueFailed(): void
     {
         $this->expectExceptionMessage(Rule\Equals::MESSAGE);
         $this->expectException(RuleFailed::class);
@@ -44,7 +47,7 @@ class EqualsTest extends TestCase
         $this->assertTrue($rule->process('field1', $this->exampleData));
     }
 
-    public function testProcessKeyFailed()
+    public function testProcessKeyFailed(): void
     {
         $this->expectExceptionMessage(Rule\Equals::MESSAGE);
         $this->expectException(RuleFailed::class);

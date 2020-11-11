@@ -8,7 +8,7 @@ use Sieg\ArrayValidator\Rule;
 
 class CallbackTest extends TestCase
 {
-    public function testProcessCallbackMethodSuccess()
+    public function testProcessCallbackMethodSuccess(): void
     {
         $config = [
             'callback' => function ($key, $data) {
@@ -19,7 +19,7 @@ class CallbackTest extends TestCase
         $this->assertTrue($rule->process('field1', []));
     }
 
-    public function testProcessRemoteClassMethod()
+    public function testProcessRemoteClassMethod(): void
     {
         $config = [
             'callback' => [$this, "exampleCallback"]
@@ -29,12 +29,12 @@ class CallbackTest extends TestCase
     }
 
     /** example callback method for testing remote callback */
-    public function exampleCallback()
+    public function exampleCallback(): bool
     {
         return true;
     }
 
-    public function testProcessFailed()
+    public function testProcessFailed(): void
     {
         $this->expectExceptionMessage(Rule\Callback::MESSAGE);
         $this->expectException(RuleFailed::class);

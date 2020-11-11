@@ -8,6 +8,9 @@ abstract class AbstractRule
 {
     public const MESSAGE = 'VALIDATOR_RULE_MESSAGE';
 
+    /**
+     * @var mixed[]
+     */
     protected $config = [
         'message' => '',
         'fields' => []
@@ -16,7 +19,7 @@ abstract class AbstractRule
     /**
      * AbstractRule constructor.
      *
-     * @param array $config
+     * @param mixed[] $config
      */
     public function __construct($config = [])
     {
@@ -24,12 +27,9 @@ abstract class AbstractRule
     }
 
     /**
-     * @param string $key
-     * @param array $data
-     *
-     * @return bool
+     * @param mixed[] $data
      *
      * @throws RuleFailed
      */
-    abstract public function process($key, $data);
+    abstract public function process(string $key, array $data): bool;
 }

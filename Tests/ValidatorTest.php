@@ -8,6 +8,9 @@ use Sieg\ArrayValidator\Validator;
 
 class ValidatorTest extends TestCase
 {
+    /**
+     * @var array[]
+     */
     public $configurationExample = [
         Rule\Required::class => [
             'fields' => ['field1', 'field2', 'field3']
@@ -25,13 +28,13 @@ class ValidatorTest extends TestCase
         ]
     ];
 
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $validator = new Validator();
         $this->assertInstanceOf(Validator::class, $validator);
     }
 
-    public function testValidate()
+    public function testValidate(): void
     {
         $data = [
             'field1' => 'value1',
@@ -43,13 +46,13 @@ class ValidatorTest extends TestCase
         $this->assertTrue($validator->isValid($data));
     }
 
-    public function testEmptyGetErrors()
+    public function testEmptyGetErrors(): void
     {
         $validator = new Validator();
         $this->assertEmpty($validator->getErrors());
     }
 
-    public function testErrors()
+    public function testErrors(): void
     {
         $data = [
             'field1' => 'value1',
@@ -72,7 +75,7 @@ class ValidatorTest extends TestCase
         $this->assertEquals($expected, $validator->getErrors());
     }
 
-    public function testGetRule()
+    public function testGetRule(): void
     {
         $validator = new Validator($this->configurationExample);
 
@@ -87,7 +90,7 @@ class ValidatorTest extends TestCase
         );
     }
 
-    public function testSetRule()
+    public function testSetRule(): void
     {
         $ruleConfig = ['key' => "exampleValue"];
         $validator = new Validator($this->configurationExample);
@@ -95,7 +98,7 @@ class ValidatorTest extends TestCase
         $this->assertSame($ruleConfig, $validator->getRule(Rule\Required::class));
     }
 
-    public function testAddRuleToOne()
+    public function testAddRuleToOne(): void
     {
         $ruleConfig = ['key' => "exampleValue"];
         $validator = new Validator($this->configurationExample);
@@ -106,7 +109,7 @@ class ValidatorTest extends TestCase
         $this->assertSame($expected, $validator->getRule(Rule\Required::class));
     }
 
-    public function testAddRuleToMultiple()
+    public function testAddRuleToMultiple(): void
     {
         $ruleConfig = ['key' => "exampleValue"];
         $validator = new Validator($this->configurationExample);
@@ -117,7 +120,7 @@ class ValidatorTest extends TestCase
         $this->assertSame($expected, $validator->getRule(Rule\Expression::class));
     }
 
-    public function testAddRuleToNotExisting()
+    public function testAddRuleToNotExisting(): void
     {
         $ruleConfig = ['key' => "exampleValue"];
         $validator = new Validator($this->configurationExample);

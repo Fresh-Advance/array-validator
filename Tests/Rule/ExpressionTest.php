@@ -8,12 +8,15 @@ use Sieg\ArrayValidator\Rule;
 
 class ExpressionTest extends TestCase
 {
+    /**
+     * @var mixed[]
+     */
     protected $exampleData = [
         'field1' => 'some matching value',
         'field2' => 'bad field value'
     ];
 
-    public function testProcessSuccess()
+    public function testProcessSuccess(): void
     {
         $config = [
             'pattern' => '/Matching/i'
@@ -22,7 +25,7 @@ class ExpressionTest extends TestCase
         $this->assertTrue($rule->process('field1', $this->exampleData));
     }
 
-    public function testProcessFailed()
+    public function testProcessFailed(): void
     {
         $this->expectExceptionMessage(Rule\Expression::MESSAGE);
         $this->expectException(RuleFailed::class);
@@ -33,7 +36,7 @@ class ExpressionTest extends TestCase
         $rule->process('field2', $this->exampleData);
     }
 
-    public function testMessageConfig()
+    public function testMessageConfig(): void
     {
         $this->expectExceptionMessage("Custom message");
         $this->expectException(RuleFailed::class);

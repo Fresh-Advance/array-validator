@@ -8,7 +8,10 @@ class Filter extends AbstractRule
 {
     public const MESSAGE = 'VALIDATOR_RULE_FILTER_FAILED';
 
-    public function process($key, $data)
+    /**
+     * @param mixed[] $data
+     */
+    public function process(string $key, array $data): bool
     {
         $message = $this->config['message'] ?: self::MESSAGE;
         $options = isset($this->config['options']) ? $this->config['options'] : null;

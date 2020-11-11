@@ -26,7 +26,7 @@
     "scripts": {
         "phpcs": "phpcs Source Tests --standard=PSR12",
         "phpunit": "phpunit Tests",
-        "phpstan": "vendor/bin/phpstan analyse Source Tests --level 5",
+        "phpstan": "vendor/bin/phpstan analyse Source Tests --level 8",
         "check": [
             "@phpcs",
             "@phpstan",

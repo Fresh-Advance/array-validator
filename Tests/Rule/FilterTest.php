@@ -8,6 +8,9 @@ use Sieg\ArrayValidator\Rule;
 
 class FilterTest extends TestCase
 {
+    /**
+     * @var mixed[]
+     */
     protected $exampleData = [
         'field1' => 'some@email.com',
         'field2' => 1.2,
@@ -24,6 +27,7 @@ class FilterTest extends TestCase
 
     /**
      * @dataProvider successDataProvider
+     * @param mixed[] $options
      */
     public function testProcessSuccess(string $field, int $rule, array $options): void
     {
@@ -35,7 +39,10 @@ class FilterTest extends TestCase
         $this->assertTrue($rule->process($field, $this->exampleData));
     }
 
-    public function successDataProvider()
+    /**
+     * @return array[]
+     */
+    public function successDataProvider(): array
     {
         return [
             ['field1', FILTER_VALIDATE_EMAIL, []],
@@ -65,8 +72,9 @@ class FilterTest extends TestCase
 
     /**
      * @dataProvider failureDataProvider
+     * @param mixed[] $options
      */
-    public function testProcessFailure(string $field, int $rule, array $options)
+    public function testProcessFailure(string $field, int $rule, array $options): void
     {
         $this->expectExceptionMessage(Rule\Filter::MESSAGE);
         $this->expectException(RuleFailed::class);
@@ -78,7 +86,10 @@ class FilterTest extends TestCase
         $rule->process($field, $this->exampleData);
     }
 
-    public function failureDataProvider()
+    /**
+     * @return array[]
+     */
+    public function failureDataProvider(): array
     {
         return [
             ['field2', FILTER_VALIDATE_EMAIL, []],

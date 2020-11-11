@@ -8,6 +8,9 @@ use Sieg\ArrayValidator\Rule;
 
 class RequiredTest extends TestCase
 {
+    /**
+     * @var mixed[]
+     */
     protected $exampleData = [
         'field1' => 'with data',
         'field2' => '',
@@ -18,13 +21,16 @@ class RequiredTest extends TestCase
     /**
      * @dataProvider processSuccessDataProvider
      */
-    public function testProcessSuccess($key)
+    public function testProcessSuccess(string $key): void
     {
         $rule = new Rule\Required();
         $this->assertTrue($rule->process($key, $this->exampleData));
     }
 
-    public function processSuccessDataProvider()
+    /**
+     * @return array[]
+     */
+    public function processSuccessDataProvider(): array
     {
         return [
             ['field1'],
@@ -35,7 +41,7 @@ class RequiredTest extends TestCase
     /**
      * @dataProvider processFailedDataProvider
      */
-    public function testProcessFailed($key)
+    public function testProcessFailed(string $key): void
     {
         $this->expectExceptionMessage(Rule\Required::MESSAGE);
         $this->expectException(RuleFailed::class);
@@ -44,7 +50,10 @@ class RequiredTest extends TestCase
         $rule->process($key, $this->exampleData);
     }
 
-    public function processFailedDataProvider()
+    /**
+     * @return array[]
+     */
+    public function processFailedDataProvider(): array
     {
         return [
             ['field2'],
@@ -53,7 +62,7 @@ class RequiredTest extends TestCase
         ];
     }
 
-    public function testMessageConfig()
+    public function testMessageConfig(): void
     {
         $this->expectExceptionMessage("Custom message");
         $this->expectException(RuleFailed::class);

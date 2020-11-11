@@ -8,7 +8,10 @@ class Callback extends AbstractRule
 {
     public const MESSAGE = 'VALIDATOR_RULE_CALLBACK_FAILED';
 
-    public function process($key, $data)
+    /**
+     * @param mixed[] $data
+     */
+    public function process(string $key, array $data): bool
     {
         $message = $this->config['message'] ?: self::MESSAGE;
         $function = $this->config['callback'];

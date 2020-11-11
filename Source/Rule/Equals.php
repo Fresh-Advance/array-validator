@@ -8,7 +8,10 @@ class Equals extends AbstractRule
 {
     public const MESSAGE = 'VALIDATOR_RULE_EQUALS_MATCH_FAILED';
 
-    public function process($key, $data)
+    /**
+     * @param mixed[] $data
+     */
+    public function process(string $key, array $data): bool
     {
         $message = $this->config['message'] ?: self::MESSAGE;
 
@@ -19,13 +22,11 @@ class Equals extends AbstractRule
     }
 
     /**
-     * @param string $key
-     * @param array $data
-     * @param string $message
+     * @param mixed[] $data
      *
      * @throws RuleFailed
      */
-    protected function checkKeyOption($key, $data, $message)
+    protected function checkKeyOption(string $key, array $data, string $message): void
     {
         if (
             isset($this->config['key']) &&
@@ -36,13 +37,11 @@ class Equals extends AbstractRule
     }
 
     /**
-     * @param string $key
-     * @param array $data
-     * @param string $message
+     * @param mixed[] $data
      *
      * @throws RuleFailed
      */
-    protected function checkValueOption($key, $data, $message)
+    protected function checkValueOption(string $key, array $data, string $message): void
     {
         if (isset($this->config['value']) && $data[$key] !== $this->config['value']) {
             throw new RuleFailed($message);

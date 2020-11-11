@@ -7,10 +7,10 @@ use Sieg\ArrayValidator\Rule\AbstractRule;
 
 class Validator
 {
-    /** @var array $rules */
+    /** @var array[] $rules */
     protected $rules;
 
-    /** @var array $errors */
+    /** @var array[] $errors */
     protected $errors = [];
 
     /** @var bool $validationStatus */
@@ -19,9 +19,9 @@ class Validator
     /**
      * Validator constructor.
      *
-     * @var array
+     * @param mixed[] $validationRules
      */
-    public function __construct($validationRules = [])
+    public function __construct(array $validationRules = [])
     {
         $this->rules = $validationRules;
     }
@@ -29,11 +29,9 @@ class Validator
     /**
      * Main validator action to start validation process.
      *
-     * @param array $data
-     *
-     * @return bool
+     * @param mixed[] $data
      */
-    public function isValid($data)
+    public function isValid(array $data): bool
     {
         $this->errors = [];
         $this->validationStatus = true;
@@ -45,7 +43,12 @@ class Validator
         return $this->validationStatus;
     }
 
-    protected function processRule(array $data, array $ruleConfiguration, string $ruleClass)
+    /**
+     * @param array[] $data
+     * @param array[] $ruleConfiguration
+     * @param string $ruleClass
+     */
+    protected function processRule(array $data, array $ruleConfiguration, string $ruleClass): void
     {
         if (array_key_exists('fields', $ruleConfiguration)) {
             $this->processRuleConfiguration($data, $ruleConfiguration, $ruleClass);
@@ -56,7 +59,12 @@ class Validator
         }
     }
 
-    protected function processRuleConfiguration(array $data, array $ruleConfiguration, string $ruleClass)
+    /**
+     * @param array[] $data
+     * @param array[] $ruleConfiguration
+     * @param string $ruleClass
+     */
+    protected function processRuleConfiguration(array $data, array $ruleConfiguration, string $ruleClass): void
     {
         foreach ($ruleConfiguration['fields'] as $fieldName) {
             try {
@@ -73,9 +81,9 @@ class Validator
     /**
      * Returns validation errors list
      *
-     * @return array
+     * @return array[]
      */
-    public function getErrors()
+    public function getErrors(): array
     {
         return $this->errors;
     }
@@ -83,11 +91,9 @@ class Validator
     /**
      * Get configuration of specific rule
      *
-     * @param string $key
-     *
-     * @return array
+     * @return array[]
      */
-    public function getRule($key)
+    public function getRule(string $key): array
     {
         return isset($this->rules[$key]) ? $this->rules[$key] : [];
     }
@@ -95,10 +101,9 @@ class Validator
     /**
      * Set configuration of specific rule
      *
-     * @param string $key
-     * @param array $configuration
+     * @param mixed[] $configuration
      */
-    public function setRule($key, $configuration)
+    public function setRule(string $key, array $configuration): void
     {
         $this->rules[$key] = $configuration;
     }
@@ -106,10 +111,9 @@ class Validator
     /**
      * Appends additional configuration to specific rule
      *
-     * @param string $key
-     * @param array $configuration
+     * @param mixed[] $configuration
      */
-    public function addRule($key, $configuration)
+    public function addRule(string $key, array $configuration): void
     {
         $currentValue = $this->getRule($key);
         if (array_key_exists('fields', $currentValue)) {
