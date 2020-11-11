@@ -6,7 +6,6 @@ php:
 
 install:
   - composer install
-  - composer require satooshi/php-coveralls
 
 before_script:
   - mkdir -p build/logs
@@ -15,9 +14,6 @@ script:
   - vendor/bin/phpunit --coverage-clover="build/logs/clover.xml" Tests
   - composer style
   - sonar-scanner
-
-after_success:
-  - php vendor/bin/coveralls -v
 
 addons:
   sonarcloud:
