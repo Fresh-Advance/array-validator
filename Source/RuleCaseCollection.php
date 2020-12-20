@@ -5,7 +5,7 @@ namespace Sieg\ArrayValidator;
 class RuleCaseCollection
 {
     /** @var RuleCase[] */
-    private array $ruleCaseList;
+    private $ruleCaseList;
     
     public function __construct(RuleCase ...$ruleCaseList)
     {

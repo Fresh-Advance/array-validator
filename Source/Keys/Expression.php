@@ -6,7 +6,8 @@ use Sieg\ArrayValidator\Exception\FieldsListError;
 
 class Expression implements KeyFilterInterface
 {
-    private string $expression;
+    /** @var string */
+    private $expression;
 
     public function __construct(string $expression)
     {

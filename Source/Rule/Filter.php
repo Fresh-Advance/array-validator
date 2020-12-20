@@ -8,7 +8,9 @@ class Filter extends AbstractRule
 {
     public const MESSAGE = 'VALIDATOR_RULE_FILTER_FAILED';
 
-    private string $rule;
+    /** @var string */
+    private $rule;
+    
     private $options;
 
     public function __construct(string $rule, array $options = null)

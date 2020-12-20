@@ -8,7 +8,8 @@ class Expression extends AbstractRule
 {
     public const MESSAGE = 'VALIDATOR_RULE_EXPRESSION_MATCH_FAILED';
 
-    private string $expression;
+    /** @var string */
+    private $expression;
 
     public function __construct(string $expression)
     {

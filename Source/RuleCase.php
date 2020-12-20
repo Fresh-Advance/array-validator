@@ -7,8 +7,13 @@ use Sieg\ArrayValidator\Rule\RuleInterface;
 
 class RuleCase
 {
-    protected KeyFilterInterface $keyFilter;
-    protected RuleInterface $rule;
+    /** @var KeyFilterInterface */
+    protected $keyFilter;
+
+    /** @var RuleInterface */
+    protected $rule;
+
+    /** @var string|null */
     protected $message;
 
     public function __construct(

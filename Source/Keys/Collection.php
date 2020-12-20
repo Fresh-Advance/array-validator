@@ -4,7 +4,8 @@ namespace Sieg\ArrayValidator\Keys;
 
 class Collection implements KeyFilterInterface
 {
-    private array $fieldsList;
+    /** @var string[] */
+    private $fieldsList;
 
     public function __construct(string ...$list)
     {
