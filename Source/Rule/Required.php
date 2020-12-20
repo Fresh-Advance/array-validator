@@ -13,10 +13,8 @@ class Required extends AbstractRule
      */
     public function process(string $key, array $data): bool
     {
-        $message = $this->config['message'] ?: self::MESSAGE;
-
         if (!isset($data[$key]) || is_null($data[$key]) || $data[$key] === "") {
-            throw new RuleFailed($message);
+            throw new RuleFailed(self::MESSAGE);
         }
 
         return true;

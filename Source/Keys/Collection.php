@@ -13,7 +13,6 @@ class Collection implements KeyFilterInterface
 
     public function filter(array $keys): array
     {
-        $intersection = array_intersect($keys, $this->fieldsList);
-        return array_values($intersection);
+        return $this->fieldsList;
     }
 }

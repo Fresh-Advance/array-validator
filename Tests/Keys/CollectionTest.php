@@ -5,9 +5,9 @@ namespace Sieg\ArrayValidator\Tests\Keys;
 use PHPUnit\Framework\TestCase;
 use Sieg\ArrayValidator\Keys\Collection;
 
-class SetTest extends TestCase
+class CollectionTest extends TestCase
 {
-    public function testSetFilter(): void
+    public function testCollectionFilter(): void
     {
         $arrayKeys = [
             'key11',
@@ -16,13 +16,14 @@ class SetTest extends TestCase
             'key22'
         ];
 
-        $fieldList = new Collection('key12', 'key21', 'key33', true);
+        $fieldList = new Collection('key12', 'key21', 'key33');
         $filteredKeys = $fieldList->filter($arrayKeys);
 
         $this->assertEquals(
             [
                 'key12',
-                'key21'
+                'key21',
+                'key33'
             ],
             $filteredKeys
         );

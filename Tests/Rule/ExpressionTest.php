@@ -18,10 +18,7 @@ class ExpressionTest extends TestCase
 
     public function testProcessSuccess(): void
     {
-        $config = [
-            'pattern' => '/Matching/i'
-        ];
-        $rule = new Rule\Expression($config);
+        $rule = new Rule\Expression('/Matching/i');
         $this->assertTrue($rule->process('field1', $this->exampleData));
     }
 
@@ -29,22 +26,8 @@ class ExpressionTest extends TestCase
     {
         $this->expectExceptionMessage(Rule\Expression::MESSAGE);
         $this->expectException(RuleFailed::class);
-        $config = [
-            'pattern' => '/something/i'
-        ];
-        $rule = new Rule\Expression($config);
-        $rule->process('field2', $this->exampleData);
-    }
 
-    public function testMessageConfig(): void
-    {
-        $this->expectExceptionMessage("Custom message");
-        $this->expectException(RuleFailed::class);
-        $config = [
-            'pattern' => '/something/i',
-            'message' => 'Custom message'
-        ];
-        $rule = new Rule\Expression($config);
+        $rule = new Rule\Expression('/something/i');
         $rule->process('field2', $this->exampleData);
     }
 }

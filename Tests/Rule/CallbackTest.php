@@ -10,21 +10,15 @@ class CallbackTest extends TestCase
 {
     public function testProcessCallbackMethodSuccess(): void
     {
-        $config = [
-            'callback' => function ($key, $data) {
-                return true;
-            }
-        ];
-        $rule = new Rule\Callback($config);
+        $rule = new Rule\Callback(function ($key, $data) {
+            return true;
+        });
         $this->assertTrue($rule->process('field1', []));
     }
 
     public function testProcessRemoteClassMethod(): void
     {
-        $config = [
-            'callback' => [$this, "exampleCallback"]
-        ];
-        $rule = new Rule\Callback($config);
+        $rule = new Rule\Callback([$this, "exampleCallback"]);
         $this->assertTrue($rule->process('field1', []));
     }
 
@@ -38,13 +32,10 @@ class CallbackTest extends TestCase
     {
         $this->expectExceptionMessage(Rule\Callback::MESSAGE);
         $this->expectException(RuleFailed::class);
-
-        $config = [
-            'callback' => function ($key, $data) {
-                return false;
-            }
-        ];
-        $rule = new Rule\Callback($config);
+        
+        $rule = new Rule\Callback(function ($key, $data) {
+            return false;
+        });
         $this->assertTrue($rule->process('field1', []));
     }
 }

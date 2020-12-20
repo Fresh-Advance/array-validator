@@ -20,19 +20,13 @@ class EqualsTest extends TestCase
 
     public function testProcessValueSuccess(): void
     {
-        $config = [
-            'value' => 'fieldvalue1'
-        ];
-        $rule = new Rule\Equals($config);
+        $rule = new Rule\Equals('fieldvalue1');
         $this->assertTrue($rule->process('field1', $this->exampleData));
     }
 
     public function testProcessKeySuccess(): void
     {
-        $config = [
-            'key' => 'field3x'
-        ];
-        $rule = new Rule\Equals($config);
+        $rule = new Rule\Equals(null, 'field3x');
         $this->assertTrue($rule->process('field3', $this->exampleData));
     }
 
@@ -40,10 +34,8 @@ class EqualsTest extends TestCase
     {
         $this->expectExceptionMessage(Rule\Equals::MESSAGE);
         $this->expectException(RuleFailed::class);
-        $config = [
-            'value' => 'fieldvalue2'
-        ];
-        $rule = new Rule\Equals($config);
+
+        $rule = new Rule\Equals('fieldvalue2');
         $this->assertTrue($rule->process('field1', $this->exampleData));
     }
 
@@ -51,10 +43,8 @@ class EqualsTest extends TestCase
     {
         $this->expectExceptionMessage(Rule\Equals::MESSAGE);
         $this->expectException(RuleFailed::class);
-        $config = [
-            'key' => 'field2'
-        ];
-        $rule = new Rule\Equals($config);
+
+        $rule = new Rule\Equals('field2');
         $this->assertTrue($rule->process('field1', $this->exampleData));
     }
 }

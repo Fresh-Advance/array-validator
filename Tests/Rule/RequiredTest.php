@@ -61,16 +61,4 @@ class RequiredTest extends TestCase
             ['field5']
         ];
     }
-
-    public function testMessageConfig(): void
-    {
-        $this->expectExceptionMessage("Custom message");
-        $this->expectException(RuleFailed::class);
-
-        $config = [
-            'message' => 'Custom message'
-        ];
-        $rule = new Rule\Required($config);
-        $rule->process('field2', $this->exampleData);
-    }
 }

@@ -3,38 +3,15 @@
 namespace Sieg\ArrayValidator\Tests;
 
 use PHPUnit\Framework\TestCase;
+use Sieg\ArrayValidator\Keys;
 use Sieg\ArrayValidator\Rule;
+use Sieg\ArrayValidator\RuleCase;
+use Sieg\ArrayValidator\RuleCaseCollection;
 use Sieg\ArrayValidator\Validator;
 
 class ValidatorTest extends TestCase
 {
-    /**
-     * @var array[]
-     */
-    public $configurationExample = [
-        Rule\Required::class => [
-            'fields' => ['field1', 'field2', 'field3']
-        ],
-        Rule\Expression::class => [
-            [
-                'fields' => ['field1', 'field3'],
-                'pattern' => '/value\d+/'
-            ],
-            [
-                'fields' => ['field2'],
-                'pattern' => '/Value/i',
-                'message' => 'super message'
-            ]
-        ]
-    ];
-
-    public function testConstructor(): void
-    {
-        $validator = new Validator();
-        $this->assertInstanceOf(Validator::class, $validator);
-    }
-
-    public function testValidate(): void
+    public function testValidateEmptyConditions(): void
     {
         $data = [
             'field1' => 'value1',
@@ -42,14 +19,8 @@ class ValidatorTest extends TestCase
             'field3' => 'value3'
         ];
 
-        $validator = new Validator($this->configurationExample);
-        $this->assertTrue($validator->isValid($data));
-    }
-
-    public function testEmptyGetErrors(): void
-    {
-        $validator = new Validator();
-        $this->assertEmpty($validator->getErrors());
+        $validator = new Validator(new RuleCaseCollection());
+        $this->assertEmpty($validator->validate($data));
     }
 
     public function testErrors(): void
@@ -59,8 +30,21 @@ class ValidatorTest extends TestCase
             'field2' => 'something'
         ];
 
-        $validator = new Validator($this->configurationExample);
-        $validator->isValid($data);
+        $validator = new Validator(new RuleCaseCollection(
+            new RuleCase(
+                new Keys\Collection('field1', 'field2', 'field3'),
+                new Rule\Required()
+            ),
+            new RuleCase(
+                new Keys\Collection('field1', 'field3'),
+                new Rule\Expression('/value\d+/')
+            ),
+            new RuleCase(
+                new Keys\Collection('field2'),
+                new Rule\Expression('/Value/i'),
+                'super message'
+            )
+        ));
 
         $expected = [
             'field2' => [
@@ -72,60 +56,6 @@ class ValidatorTest extends TestCase
             ]
         ];
 
-        $this->assertEquals($expected, $validator->getErrors());
-    }
-
-    public function testGetRule(): void
-    {
-        $validator = new Validator($this->configurationExample);
-
-        $this->assertSame(
-            $this->configurationExample[Rule\Required::class],
-            $validator->getRule(Rule\Required::class)
-        );
-
-        $this->assertSame(
-            $this->configurationExample[Rule\Expression::class],
-            $validator->getRule(Rule\Expression::class)
-        );
-    }
-
-    public function testSetRule(): void
-    {
-        $ruleConfig = ['key' => "exampleValue"];
-        $validator = new Validator($this->configurationExample);
-        $validator->setRule(Rule\Required::class, $ruleConfig);
-        $this->assertSame($ruleConfig, $validator->getRule(Rule\Required::class));
-    }
-
-    public function testAddRuleToOne(): void
-    {
-        $ruleConfig = ['key' => "exampleValue"];
-        $validator = new Validator($this->configurationExample);
-        $validator->addRule(Rule\Required::class, $ruleConfig);
-        $expected = [$this->configurationExample[Rule\Required::class]];
-        $expected[] = $ruleConfig;
-
-        $this->assertSame($expected, $validator->getRule(Rule\Required::class));
-    }
-
-    public function testAddRuleToMultiple(): void
-    {
-        $ruleConfig = ['key' => "exampleValue"];
-        $validator = new Validator($this->configurationExample);
-        $validator->addRule(Rule\Expression::class, $ruleConfig);
-        $expected = $this->configurationExample[Rule\Expression::class];
-        $expected[] = $ruleConfig;
-
-        $this->assertSame($expected, $validator->getRule(Rule\Expression::class));
-    }
-
-    public function testAddRuleToNotExisting(): void
-    {
-        $ruleConfig = ['key' => "exampleValue"];
-        $validator = new Validator($this->configurationExample);
-        $validator->addRule("other", $ruleConfig);
-
-        $this->assertSame([$ruleConfig], $validator->getRule("other"));
+        $this->assertEquals($expected, $validator->validate($data));
     }
 }

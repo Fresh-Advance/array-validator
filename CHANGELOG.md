@@ -7,24 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [v2.0.0] - Unreleased
 
 ### Added
-
-- Dynamic manipulation with Validator rules are possible now.
-- New methods:
-    * Validator::getRule - get configurations of specific rule
-    * Validator::setRule - set configuration of specific rule
-    * Validator::addRule - append additional configuration to specific rule
+- A possibility to more precisely specify the list of fields for a rule.
 
 ### Changed
-
+- Changed the way how to configure the validator
+- Validation state is not saved in Validator object anymore
 - Vendor renamed to fresh-advance
-- Improved readme with installation instructions
+- Improved readme with installation instructions and new way to configure
 
 ## [v1.0.0] - 2018-05-24
 
-Tested for a while, stable version.
+Very basic implementation. Tested for a while, stable version.
 
 ### Added
-
 - Implemented rules (See README.md for more information):
     * Required
     * Expression

@@ -1,0 +1,19 @@
+<?php
+
+namespace Sieg\ArrayValidator;
+
+class RuleCaseCollection
+{
+    /** @var RuleCase[] */
+    private array $ruleCaseList;
+    
+    public function __construct(RuleCase ...$ruleCaseList)
+    {
+        $this->ruleCaseList = $ruleCaseList;
+    }
+
+    public function getCases()
+    {
+        return $this->ruleCaseList;
+    }
+}

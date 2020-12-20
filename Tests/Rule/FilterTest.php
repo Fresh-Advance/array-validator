@@ -31,11 +31,7 @@ class FilterTest extends TestCase
      */
     public function testProcessSuccess(string $field, int $rule, array $options): void
     {
-        $config = [
-            'rule' => $rule,
-            'options' => $options
-        ];
-        $rule = new Rule\Filter($config);
+        $rule = new Rule\Filter($rule, $options);
         $this->assertTrue($rule->process($field, $this->exampleData));
     }
 
@@ -82,7 +78,7 @@ class FilterTest extends TestCase
             'rule' => $rule,
             'options' => $options
         ];
-        $rule = new Rule\Filter($config);
+        $rule = new Rule\Filter($rule, $options);
         $rule->process($field, $this->exampleData);
     }
 
