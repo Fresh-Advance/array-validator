@@ -22,37 +22,41 @@ composer require fresh-advance/array-validator
 ## Usage example
 
 ```php
+use Sieg\ArrayValidator\Keys;
 use Sieg\ArrayValidator\Rule;
+use Sieg\ArrayValidator\RuleCase;
+use Sieg\ArrayValidator\RuleCaseCollection;
 use Sieg\ArrayValidator\Validator;
 
-$configurationExample = [
-    Rule\Required::class => [
-        'fields' => ['field1', 'field2', 'field3']
-    ],
-    Rule\Expression::class => [
-        [
-            'fields' => ['field1', 'field3'],
-            'pattern' => '/value\d+/'
-        ],
-        [
-            'fields' => ['field2'],
-            'pattern' => '/Value/i',
-            'message' => 'super message'
-        ]
-    ]
-];
+$configurationExample = new RuleCaseCollection(
+    new RuleCase(
+        new Keys\All(),
+        new Rule\Length(5, 7)
+    ),
+    new RuleCase(
+        new Keys\Collection('field1', 'field3'),
+        new Rule\Expression('/value\d+/')
+    ),
+    new RuleCase(
+        new Keys\Expression('/2$/'),
+        new Rule\Expression('/value\d+/'),
+        'Special message'
+    )
+);
 
 $dataExample = [
-     'field1' => 'value1',
-     'field2' => 'something'
- ];
- 
- $validator = new Validator($configurationExample);
- if ($validator->isValid($dataExample)) {
+    'field1' => 'value1',
+    'field2' => 'something'
+];
+
+$validator = new Validator($configurationExample);
+$errors = $validator->validate($dataExample);
+if (empty($errors)) {
     // array fits validation configuration
- } else {
-    print_r($validator->getErrors());
- }
+    echo 'ok';
+} else {
+    print_r($errors);
+}
 ```
 
 Gives validation errors with fields as keys:
@@ -60,45 +64,17 @@ Gives validation errors with fields as keys:
 ```
 Array
 (
-    [field3] => Array
-        (
-            [0] => VALIDATOR_RULE_REQUIRED_FIELD_VALUE
-            [1] => VALIDATOR_RULE_EXPRESSION_MATCH_FAILED
-        )
-
     [field2] => Array
         (
-            [0] => super message
+            [0] => VALIDATOR_RULE_LENGTH_FAILED
+            [1] => Special message
         )
 
+    [field3] => Array
+        (
+            [0] => VALIDATOR_RULE_EXPRESSION_MATCH_FAILED
+        )
 )
-```
-
-## Dynamic rule manipulation
-
-```php
-$validator = new Validator();
-
-// add another iteration for Required rule
-$validator->addRule(Rule\Required::class, [
-    'fields' => ['field1', 'field2', 'field3']
-]);
-
-// fully overwrite configs for Expression rule
-$validator->setRule(Rule\Expression::class, [
-    [
-        'fields' => ['field1', 'field3'],
-        'pattern' => '/value\d+/'
-    ],
-    [
-        'fields' => ['field2'],
-        'pattern' => '/Value/i',
-        'message' => 'super message'
-    ]
-]);
-
-// reset Expression rules
-$validator->setRule(Rule\Expression::class, []);
 ```
 
 ## Predefined Rules
