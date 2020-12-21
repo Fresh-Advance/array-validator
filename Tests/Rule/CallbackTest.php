@@ -32,7 +32,7 @@ class CallbackTest extends TestCase
     {
         $this->expectExceptionMessage(Rule\Callback::MESSAGE);
         $this->expectException(RuleFailed::class);
-        
+
         $rule = new Rule\Callback(function ($key, $data) {
             return false;
         });

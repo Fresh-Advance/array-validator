@@ -16,9 +16,9 @@ class RuleCaseCollectionTest extends TestCase
             new Keys\All(),
             new Rule\Required()
         );
-        
+
         $collection = new RuleCaseCollection($collectionItem);
-        
+
         $this->assertSame([$collectionItem], $collection->getCases());
     }
 }

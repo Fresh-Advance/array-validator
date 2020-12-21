@@ -11,14 +11,14 @@ class Length extends AbstractRule
     private $min;
     private $max;
     private $actual;
-    
+
     public function __construct(int $min = null, int $max = null, int $actual = null)
     {
         $this->min = $min;
         $this->max = $max;
         $this->actual = $actual;
     }
-    
+
     /**
      * @param mixed[] $data
      */

@@ -16,14 +16,14 @@ class RuleCaseTest extends TestCase
             new Keys\Collection('field1', 'field2'),
             $abstractRule
         );
-        
+
         $keys = [
             'someField',
             'field1',
             'field2',
             'otherField'
         ];
-        
+
         $this->assertSame(
             ['field1', 'field2'],
             $case->filterFields($keys)

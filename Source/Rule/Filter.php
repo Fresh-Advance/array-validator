@@ -10,7 +10,7 @@ class Filter extends AbstractRule
 
     /** @var string */
     private $rule;
-    
+
     private $options;
 
     public function __construct(string $rule, array $options = null)
@@ -18,7 +18,7 @@ class Filter extends AbstractRule
         $this->rule = $rule;
         $this->options = $options;
     }
-    
+
     /**
      * @param mixed[] $data
      */

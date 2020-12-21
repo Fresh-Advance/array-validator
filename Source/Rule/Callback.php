@@ -14,7 +14,7 @@ class Callback extends AbstractRule
     {
         $this->callback = $callback;
     }
-    
+
     /**
      * @param mixed[] $data
      */
