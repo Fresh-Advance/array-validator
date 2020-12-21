@@ -8,12 +8,19 @@ class Filter extends AbstractRule
 {
     public const MESSAGE = 'VALIDATOR_RULE_FILTER_FAILED';
 
-    /** @var string */
+    /** @var int */
     private $rule;
 
+    /** @var array<mixed>|null */
     private $options;
 
-    public function __construct(string $rule, array $options = null)
+    /**
+     * Filter constructor.
+     *
+     * @param int $rule
+     * @param array<mixed>|null $options
+     */
+    public function __construct(int $rule, array $options = null)
     {
         $this->rule = $rule;
         $this->options = $options;

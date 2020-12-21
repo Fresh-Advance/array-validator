@@ -8,9 +8,18 @@ class Equals extends AbstractRule
 {
     public const MESSAGE = 'VALIDATOR_RULE_EQUALS_MATCH_FAILED';
 
+    /** @var mixed|null  */
     private $value;
+
+    /** @var string|null  */
     private $key;
 
+    /**
+     * Equals constructor.
+     *
+     * @param mixed|null $value
+     * @param string|null $key
+     */
     public function __construct($value = null, string $key = null)
     {
         $this->value = $value;

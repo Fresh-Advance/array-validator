@@ -11,12 +11,15 @@ class ExpressionTest extends TestCase
     /**
      * @dataProvider dataProviderTestWrongExpression
      */
-    public function testWrongExpression($testExpression): void
+    public function testWrongExpression(string $testExpression): void
     {
         $this->expectException(FieldsListError::class);
         $result = new Expression($testExpression);
     }
 
+    /**
+     * @return array<int,array<int, string>>
+     */
     public function dataProviderTestWrongExpression(): array
     {
         return [

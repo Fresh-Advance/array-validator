@@ -11,7 +11,7 @@ class Expression implements KeyFilterInterface
 
     public function __construct(string $expression)
     {
-        if (!$expression || @preg_match($expression, null) === false) {
+        if (!$expression || @preg_match($expression, '') === false) {
             throw new FieldsListError('Expression is not correct');
         }
 

@@ -8,8 +8,13 @@ class Length extends AbstractRule
 {
     public const MESSAGE = 'VALIDATOR_RULE_LENGTH_FAILED';
 
+    /** @var int|null */
     private $min;
+
+    /** @var int|null */
     private $max;
+
+    /** @var int|null */
     private $actual;
 
     public function __construct(int $min = null, int $max = null, int $actual = null)

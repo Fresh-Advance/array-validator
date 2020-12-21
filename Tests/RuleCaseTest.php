@@ -9,7 +9,7 @@ use Sieg\ArrayValidator\RuleCase;
 
 class RuleCaseTest extends TestCase
 {
-    public function testFilterFields()
+    public function testFilterFields(): void
     {
         $abstractRule = $this->getMockForAbstractClass(AbstractRule::class);
         $case = new RuleCase(
@@ -30,7 +30,7 @@ class RuleCaseTest extends TestCase
         );
     }
 
-    public function testGetRule()
+    public function testGetRule(): void
     {
         $abstractRule = $this->getMockForAbstractClass(AbstractRule::class);
         $case = new RuleCase(
@@ -44,7 +44,7 @@ class RuleCaseTest extends TestCase
         );
     }
 
-    public function testGetDefaultMessage()
+    public function testGetDefaultMessage(): void
     {
         $abstractRule = $this->getMockForAbstractClass(AbstractRule::class);
         $case = new RuleCase(
@@ -55,7 +55,7 @@ class RuleCaseTest extends TestCase
         $this->assertNull($case->getMessage());
     }
 
-    public function testSpecialMessage()
+    public function testSpecialMessage(): void
     {
         $abstractRule = $this->getMockForAbstractClass(AbstractRule::class);
         $message = 'Special message';

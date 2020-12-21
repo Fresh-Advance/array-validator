@@ -10,7 +10,7 @@ use Sieg\ArrayValidator\RuleCaseCollection;
 
 class RuleCaseCollectionTest extends TestCase
 {
-    public function testGetCasesWithOneRuleCase()
+    public function testGetCasesWithOneRuleCase(): void
     {
         $collectionItem = new RuleCase(
             new Keys\All(),

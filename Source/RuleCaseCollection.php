@@ -12,7 +12,10 @@ class RuleCaseCollection
         $this->ruleCaseList = $ruleCaseList;
     }
 
-    public function getCases()
+    /**
+     * @return RuleCase[]
+     */
+    public function getCases(): array
     {
         return $this->ruleCaseList;
     }

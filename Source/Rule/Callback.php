@@ -8,8 +8,14 @@ class Callback extends AbstractRule
 {
     public const MESSAGE = 'VALIDATOR_RULE_CALLBACK_FAILED';
 
+    /** @var Callable */
     private $callback;
 
+    /**
+     * Callback constructor.
+     *
+     * @param Callable $callback
+     */
     public function __construct($callback)
     {
         $this->callback = $callback;
