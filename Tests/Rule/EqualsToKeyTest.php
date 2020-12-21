@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Sieg\ArrayValidator\Exception\RuleFailed;
 use Sieg\ArrayValidator\Rule;
 
-class EqualsTest extends TestCase
+class EqualsToKeyTest extends TestCase
 {
     /**
      * @var mixed[]
@@ -18,33 +18,18 @@ class EqualsTest extends TestCase
         'field3x' => 'fieldvalue3'
     ];
 
-    public function testProcessValueSuccess(): void
-    {
-        $rule = new Rule\Equals('fieldvalue1');
-        $this->assertTrue($rule->process('field1', $this->exampleData));
-    }
-
     public function testProcessKeySuccess(): void
     {
-        $rule = new Rule\Equals(null, 'field3x');
+        $rule = new Rule\EqualsToKey('field3x');
         $this->assertTrue($rule->process('field3', $this->exampleData));
-    }
-
-    public function testProcessValueFailed(): void
-    {
-        $this->expectExceptionMessage(Rule\Equals::MESSAGE);
-        $this->expectException(RuleFailed::class);
-
-        $rule = new Rule\Equals('fieldvalue2');
-        $this->assertTrue($rule->process('field1', $this->exampleData));
     }
 
     public function testProcessKeyFailed(): void
     {
-        $this->expectExceptionMessage(Rule\Equals::MESSAGE);
+        $this->expectExceptionMessage(Rule\EqualsToKey::MESSAGE);
         $this->expectException(RuleFailed::class);
 
-        $rule = new Rule\Equals(null, 'field2');
+        $rule = new Rule\EqualsToKey('field2');
         $this->assertTrue($rule->process('field1', $this->exampleData));
     }
 }
