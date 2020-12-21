@@ -4,16 +4,16 @@ namespace Sieg\ArrayValidator\Rule;
 
 use Sieg\ArrayValidator\Exception\RuleFailed;
 
-class Length extends AbstractRule
+class MinLength extends AbstractRule
 {
-    public const MESSAGE = 'VALIDATOR_RULE_LENGTH_FAILED';
+    public const MESSAGE = 'VALIDATOR_RULE_LENGTH_TOO_LOW';
 
     /** @var int */
-    private $length;
+    private $min;
 
-    public function __construct(int $length)
+    public function __construct(int $min)
     {
-        $this->length = $length;
+        $this->min = $min;
     }
 
     /**
@@ -21,7 +21,7 @@ class Length extends AbstractRule
      */
     public function process(string $key, array $data): bool
     {
-        if (!isset($data[$key]) || strlen($data[$key]) !== $this->length) {
+        if (!isset($data[$key]) || strlen($data[$key]) < $this->min) {
             throw new RuleFailed(self::MESSAGE);
         }
 

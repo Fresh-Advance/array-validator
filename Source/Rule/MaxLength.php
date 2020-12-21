@@ -4,16 +4,16 @@ namespace Sieg\ArrayValidator\Rule;
 
 use Sieg\ArrayValidator\Exception\RuleFailed;
 
-class Length extends AbstractRule
+class MaxLength extends AbstractRule
 {
-    public const MESSAGE = 'VALIDATOR_RULE_LENGTH_FAILED';
+    public const MESSAGE = 'VALIDATOR_RULE_LENGTH_TOO_HIGH';
 
     /** @var int */
-    private $length;
+    private $max;
 
-    public function __construct(int $length)
+    public function __construct(int $max)
     {
-        $this->length = $length;
+        $this->max = $max;
     }
 
     /**
@@ -21,7 +21,7 @@ class Length extends AbstractRule
      */
     public function process(string $key, array $data): bool
     {
-        if (!isset($data[$key]) || strlen($data[$key]) !== $this->length) {
+        if (!isset($data[$key]) || strlen($data[$key]) > $this->max) {
             throw new RuleFailed(self::MESSAGE);
         }
 
