@@ -44,7 +44,7 @@ class EqualsTest extends TestCase
         $this->expectExceptionMessage(Rule\Equals::MESSAGE);
         $this->expectException(RuleFailed::class);
 
-        $rule = new Rule\Equals('field2');
+        $rule = new Rule\Equals(null, 'field2');
         $this->assertTrue($rule->process('field1', $this->exampleData));
     }
 }
