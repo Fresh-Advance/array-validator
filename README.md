@@ -79,21 +79,40 @@ Array
 
 ## Predefined Rules
 
-There are some basic rules implemented with the component.
+There are some basic rules implemented with the component:
 
-Every rule options:
+* **Callback(closure $closure)**
+  - Takes Closure as parameter. **$key** and **$data** will be sent to Closure.
 
-* **fields** - String[]
+* **EqualsTo(mixed $value)**
+  - Check if value is equal to Rule $value parameter.
 
-    List of keys in array to apply rule on.
-    
-* **message** - String
+* **EqualsToKey(string $key)**
+  - Check if value is equal to other key value.
 
-    Error message for failing validation field.
+* **Expression(string $regex)**
+  - Takes regex as parameter.
 
-### Required Rule
+* **Filter(int $filterRule, array $filterOptions)**
+  - Rule uses ``filter_var`` function for validating the value.
+  - Takes PHP filter constants to apply as first param:
+    * FILTER_VALIDATE_EMAIL
+    * FILTER_VALIDATE_FLOAT
+    * FILTER_VALIDATE_INT
+    * FILTER_VALIDATE_IP
+    * FILTER_VALIDATE_MAC
+    * FILTER_VALIDATE_REGEXP
+    * FILTER_VALIDATE_URL
+  - Takes ``filter_var`` options array as second param.
+  - Refer to ``filter_var`` function documentation for more [information](http://php.net/manual/en/function.filter-var.php)
 
-Rule checks if key exists in array and is not null.
+* **Length(int $length)**
+* **LengthRange(int $min, int $max)**
+* **MaxLength(int $max)**
+* **MinLength(int $min)**
+
+* **Required**
+  - Check if the field exists and not empty
 
 ### Expression Rule
 

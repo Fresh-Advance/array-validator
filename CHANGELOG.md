@@ -12,8 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Changed the way how to configure the validator
 - Validation state is not saved in Validator object anymore
+- ``isValid`` method renamed to ``validate``, which always return errors array
 - Vendor renamed to fresh-advance
 - Improved readme with installation instructions and new way to configure
+- All rule constructors now takes more strict and intuitive parameters
 
 ## [v1.0.0] - 2018-05-24
 
