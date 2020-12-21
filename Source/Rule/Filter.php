@@ -17,13 +17,13 @@ class Filter extends AbstractRule
     /**
      * Filter constructor.
      *
-     * @param int $rule
-     * @param array<mixed>|null $options
+     * @param int $filterRule
+     * @param array<mixed>|null $filterOptions
      */
-    public function __construct(int $rule, array $options = null)
+    public function __construct(int $filterRule, array $filterOptions = null)
     {
-        $this->rule = $rule;
-        $this->options = $options;
+        $this->rule = $filterRule;
+        $this->options = $filterOptions;
     }
 
     /**
