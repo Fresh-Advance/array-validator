@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - InArray rule
+- Min rule
+- Max rule
+- Range rule
 
 ## [v2.0.0] - 2020-12-22
 

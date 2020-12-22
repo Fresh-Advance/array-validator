@@ -110,9 +110,14 @@ There are some basic rules implemented with the component:
 
 * **Length(int $length)**
 * **LengthRange(int $min, int $max)**
+
+* **Max(int $max)**
 * **MaxLength(int $max)**
+
+* **Min(int $min)**
 * **MinLength(int $min)**
 
+* **Range(int $min, int $max)**
 * **Required**
   - Check if the field exists and not empty
 
