@@ -106,6 +106,8 @@ There are some basic rules implemented with the component:
   - Takes ``filter_var`` options array as second param.
   - Refer to ``filter_var`` function documentation for more [information](http://php.net/manual/en/function.filter-var.php)
 
+* **InArray(array $choices)**
+
 * **Length(int $length)**
 * **LengthRange(int $min, int $max)**
 * **MaxLength(int $max)**
