@@ -31,7 +31,7 @@ use Sieg\ArrayValidator\Validator;
 $configurationExample = new RuleCaseCollection(
     new RuleCase(
         new Keys\All(),
-        new Rule\Length(5, 7)
+        new Rule\LengthRange(5, 7)
     ),
     new RuleCase(
         new Keys\Collection('field1', 'field3'),
@@ -66,7 +66,7 @@ Array
 (
     [field2] => Array
         (
-            [0] => VALIDATOR_RULE_LENGTH_FAILED
+            [0] => VALIDATOR_RULE_LENGTH_TOO_HIGH
             [1] => Special message
         )
 
