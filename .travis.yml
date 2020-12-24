@@ -18,7 +18,7 @@ before_script:
   - mkdir -p build/logs
 
 script:
-  - vendor/bin/phpunit --coverage-clover="build/logs/clover.xml" Tests
+  - vendor/bin/phpunit --coverage-clover="build/logs/clover.xml" --log-junit="build/logs/phpunit.xml" Tests
   - composer style
   - sonar-scanner
 
@@ -26,4 +26,4 @@ addons:
   sonarcloud:
     organization: "fresh-advance"
     token:
-      secure: "wM8S1d33CkgRpaTVzlsDxYXigC0c4yBAeS0wXiZCq+HOxER7oNPtFk+jLfHsEFzw/UVOv3TVgIo2yCTR3XxHy2bEj2eBqB9fkj60Ruv+5Mn/AM3k2vP0nPJKwNWeMfNq7sqEqnf8f3kXRCBHWEs52v9lLD5PvBXdyFBMd55t7al7cbrGYldNmSSfWwpXWQ06tUXAswt9yM9If0++b3YgoZNFFHMMCl4ssKyQcnwHHOprcepC5NP0ytRRYv6jgDK8uJuvKvFGhtNYS3JdQMPZv+zOQL14JypMTOEZbI7Y1/7gLqn7rrPvMPBAACnkCJlcXk/iT8wdAkB4usHWHA6tJzStbbQ1h7CknKwUfdaodfmienOzplDcRKsDd4Pc2Gzthzl8m4qLNwivjJWeyjsc8VbpRjwL7X9UQBdfRvKoEb2DAu2jVfgMwRPR8ZP4jp9COVsmMgz/eUw8SQuYEkdm05KdgjGicdml8CnJT9MFltb8P5Xn9LnU0vNe+vNnmU1mVi1nwjqCwugNR8oPCM36jrIc9nB8T6yfaKyqhtAiq1HcCFJb/zopUt0y7qGxC6wTf8jefIsq7kunj33tow/J9RbTGaAvb9hsqJxduGyDXyWq2xVC5JWaAvQRKgnSDWGnw5oFr1Po++zjdAZYBrtJ7vFu48uUJjYOp9cVZS1oSzE="
+      secure: "pm/6A1+VTBNnqnMDJLl0NOq+yQDvVoj/W3KT+agF7eqHwRHwKf9/SFjlfPzeslk+CdPW4L+jtDp7B2DsCpelCaEVAZAE0N7Ia4ai8iBSKCkInuxzO5wX1dDtzKyYpLfFf6Fs68xmCJsOT+HHLk/5McNH5VZ8HoQEwmBJLGb75Okn4nyaDSEEXTMehwLjXD632bXDagtUfuZ5wjreuiryAE4ZYPIGM3PmXREmlMIzrp0D69YaqpHEiobk9nAXOt0UdYO43A0ZEvFFJJ/62UWP0ZkQ78K9rQnhjRMYrfcwhImVu1UFl4Zjq01A6QI81T3JQM6QfcqvYG1G0gTzNeu0nZETSTx4W/Kw+7AIukCOGbG6vScCICZcX26Nub9OtAwKhqnhJBChnZyrSwIVEePHWECSeaNjDojQk12lwjAbqXqa6XOaXkHfKWQXpFnW3mhvOoK2EGW4xLUPey9Rfsy8G+YUKEv47HjfkmLauVU9GAov2uUiOJdPFAQA1bTX3qi29aO1j6VJtFIWEhdL8vbRDDXiQ4yW9i6vi6X2v5RvrIYOsnMa9pejDo/Fl2rruSXIllZIul99kwsO2ZNV3NmbQd7B7NUzs6tJ5bWydsFsFZDwBSrpLgP41ejlyUO1MaeZOk2IiMOwjpQApQ5mSHxkGSnFMvTBmG4qqTLt7IRTqto="
