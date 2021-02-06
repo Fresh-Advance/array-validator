@@ -11,7 +11,7 @@ Simple form data / any array validation tool.
 * Component validates an array by provided rules list. 
 * Its possible to use multiple configurations of one rule for one field in one validation run.
 * Not dependant on other third party components.
-* Works with PHP 7 and 8. Fits PSR-12 coding style. 
+* Tested with PHP 7.3 and up, including PHP 8.0. Fits PSR-12 coding style. 
 
 ## Installation
 
