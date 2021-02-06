@@ -9,10 +9,6 @@ php:
   - 7.4
   - 8.0
 
-jobs:
-  allow_failures:
-    - php: 8.0
-
 git:
   depth: false
 
