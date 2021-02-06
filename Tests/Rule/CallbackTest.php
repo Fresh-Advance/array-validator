@@ -42,7 +42,7 @@ class CallbackTest extends TestCase
     public function testProcessDataAccess(): void
     {
         $rule = new Rule\Callback(function ($key, $data) {
-            if ($data[$key] = 'correct') {
+            if ($data[$key] === 'correct') {
                 return true;
             }
 
