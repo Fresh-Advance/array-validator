@@ -11,16 +11,16 @@ class Filter extends AbstractRule
     /** @var int */
     private $rule;
 
-    /** @var array<mixed>|null */
-    private $options;
+    /** @var array<mixed> */
+    private $options = [];
 
     /**
      * Filter constructor.
      *
      * @param int $filterRule
-     * @param array<mixed>|null $filterOptions
+     * @param array<mixed> $filterOptions
      */
-    public function __construct(int $filterRule, array $filterOptions = null)
+    public function __construct(int $filterRule, array $filterOptions = [])
     {
         $this->rule = $filterRule;
         $this->options = $filterOptions;
