@@ -38,4 +38,20 @@ class CallbackTest extends TestCase
         });
         $this->assertTrue($rule->process('field1', []));
     }
+
+    public function testProcessDataAccess(): void
+    {
+        $rule = new Rule\Callback(function ($key, $data) {
+            if ($data[$key] = 'correct') {
+                return true;
+            }
+
+            return false;
+        });
+
+        $this->assertTrue($rule->process('field1', [
+            'field1' => 'correct',
+            'field2' => 'wrong'
+        ]));
+    }
 }
